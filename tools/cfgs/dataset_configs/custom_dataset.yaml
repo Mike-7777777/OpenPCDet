@@ -1,12 +1,12 @@
 DATASET: 'CustomDataset'
 DATA_PATH: '../data/custom'
 
-POINT_CLOUD_RANGE: [-94.6982, -104.359, -9.932036, 118.7886, 63.81768, 0.02746384]
+POINT_CLOUD_RANGE: [-106.88, -84.48, -9, 106.88, 84.48, 0]
 
 MAP_CLASS_TO_KITTI: {
-    'Vehicle': 'CAR',
-    'Pedestrian': 'PEDESTRIAN',
-    'Cyclist': 'TRUCK',
+    'CAR': 'Car',
+    'PEDESTRIAN': 'Pedestrian',
+    'TRUCK': 'Truck',
 }
 
 DATA_SPLIT: {
@@ -33,10 +33,10 @@ DATA_AUGMENTOR:
           DB_INFO_PATH:
               - custom_dbinfos_train.pkl
           PREPARE: {
-             filter_by_min_points: ['Vehicle:5', 'Pedestrian:5', 'Cyclist:5'],
+             filter_by_min_points: ['CAR:5', 'PEDESTRIAN:5', 'TRUCK:5'],
           }
 
-          SAMPLE_GROUPS: ['Vehicle:20', 'Pedestrian:15', 'Cyclist:15']
+          SAMPLE_GROUPS: ['CAR:20', 'PEDESTRIAN:15', 'TRUCK:15']
           NUM_POINT_FEATURES: 4
           DATABASE_WITH_FAKELIDAR: False
           REMOVE_EXTRA_WIDTH: [0.0, 0.0, 0.0]
@@ -62,9 +62,9 @@ DATA_PROCESSOR:
       }
 
     - NAME: transform_points_to_voxels
-      VOXEL_SIZE: [13.3125, 10.5125, 0.249]
+      VOXEL_SIZE: [0.05, 0.05, 0.225]
       MAX_POINTS_PER_VOXEL: 5
       MAX_NUMBER_OF_VOXELS: {
-        'train': 150000,
-        'test': 150000
+        'train': 16000,
+        'test': 40000
       }
