@@ -1,12 +1,12 @@
 DATASET: 'CustomDataset'
 DATA_PATH: '../data/custom'
 
-POINT_CLOUD_RANGE: [-75.2, -75.2, -2, 75.2, 75.2, 4]
+POINT_CLOUD_RANGE: [-94.6982, -104.359, -9.932036, 118.7886, 63.81768, 0.02746384]
 
 MAP_CLASS_TO_KITTI: {
-    'Vehicle': 'Car',
-    'Pedestrian': 'Pedestrian',
-    'Cyclist': 'Cyclist',
+    'Vehicle': 'CAR',
+    'Pedestrian': 'PEDESTRIAN',
+    'Cyclist': 'TRUCK',
 }
 
 DATA_SPLIT: {
@@ -62,7 +62,7 @@ DATA_PROCESSOR:
       }
 
     - NAME: transform_points_to_voxels
-      VOXEL_SIZE: [0.1, 0.1, 0.15]
+      VOXEL_SIZE: [13.3125, 10.5125, 0.249]
       MAX_POINTS_PER_VOXEL: 5
       MAX_NUMBER_OF_VOXELS: {
         'train': 150000,

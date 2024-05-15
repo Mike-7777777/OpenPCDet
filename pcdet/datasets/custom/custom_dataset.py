@@ -47,25 +47,40 @@ class CustomDataset(DatasetTemplate):
         self.logger.info('Total samples for CUSTOM dataset: %d' % (len(custom_infos)))
 
     def get_label(self, idx):
-        label_file = self.root_path / 'labels' / ('%s.txt' % idx)
+        label_file = self.root_path / 'label_2' / ('%s.txt' % idx)
+        # print(label_file)
         assert label_file.exists()
         with open(label_file, 'r') as f:
             lines = f.readlines()
 
-        # [N, 8]: (x y z dx dy dz heading_angle category_id)
+        # [N, 8]: (x y z dx dy dz heading_angle category_name)
+        # N,8 : category_name,...
         gt_boxes = []
         gt_names = []
         for line in lines:
-            line_list = line.strip().split(' ')
-            gt_boxes.append(line_list[:-1])
-            gt_names.append(line_list[-1])
-
-        return np.array(gt_boxes, dtype=np.float32), np.array(gt_names)
+            parts = line.strip().split()
+            class_name = parts[0]
+            if class_name == 'DontCare':
+                continue
+            
+            # 从标签文件中提取所需信息
+            h, w, l = float(parts[8]), float(parts[9]), float(parts[10])
+            x, y, z = float(parts[11]), float(parts[12]), float(parts[13])
+            rotation_y = float(parts[14])
+            
+            # 创建目标格式 (x, y, z, dx, dy, dz, heading_angle, category_id)
+            box = [x, y, z, l, w, h, rotation_y]
+            gt_boxes.append(box)
+            gt_names.append(class_name)
+            
+        a = np.array(gt_boxes, dtype=np.float32)
+        b = np.array(gt_names)
+        return a,b
 
     def get_lidar(self, idx):
-        lidar_file = self.root_path / 'points' / ('%s.npy' % idx)
+        lidar_file = self.root_path / 'velodyne' / ('%s.bin' % idx)
         assert lidar_file.exists()
-        point_features = np.load(lidar_file)
+        point_features = np.fromfile(lidar_file, dtype=np.float32).reshape(-1, 4)
         return point_features
 
     def set_split(self, split):
