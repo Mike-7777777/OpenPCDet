@@ -2,6 +2,12 @@
 
 # OpenPCDet
 
+**FOR GOETTINGEN SMART CITY GROUP MEMBERS, PLEASE SEE `MY_README.MD`.**
+
+**FOR GOETTINGEN SMART CITY GROUP MEMBERS, PLEASE SEE `MY_README.MD`.**
+
+**FOR GOETTINGEN SMART CITY GROUP MEMBERS, PLEASE SEE `MY_README.MD`.**
+
 `OpenPCDet` is a clear, simple, self-contained open source project for LiDAR-based 3D object detection. 
 
 It is also the official code release of [`[PointRCNN]`](https://arxiv.org/abs/1812.04244), [`[Part-A2-Net]`](https://arxiv.org/abs/1907.03670), [`[PV-RCNN]`](https://arxiv.org/abs/1912.13192), [`[Voxel R-CNN]`](https://arxiv.org/abs/2012.15712), [`[PV-RCNN++]`](https://arxiv.org/abs/2102.00463) and [`[MPPNet]`](https://arxiv.org/abs/2205.05979). 

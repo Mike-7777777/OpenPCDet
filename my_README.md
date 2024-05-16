@@ -1,5 +1,14 @@
 
-# Ins
+# A Hands-on Guide to Training PointPillars Models on SCC with OpenPCDet
+
+Group members: QS, Leo, Ivan, Alex.
+
+Responsible for this article: QS aka @Mike-7777777
+
+- [Prepare the Data](https://github.com/Mike-7777777/OpenPCDet/blob/master/my_README.md#prepare-the-dataset)
+- [Config the HPC system](https://github.com/Mike-7777777/OpenPCDet/blob/master/my_README.md#config-the-goe-scc-hpc-systemscc)
+- [The OUTPUT of our model](https://github.com/Mike-7777777/OpenPCDet/blob/master/my_README.md#the-output-folder-the-Results)
+- The Data Analysis...
 
 ## Prepare the Dataset
 
@@ -26,9 +35,7 @@ Before use this repo, you should already have the custom datasets:
         --- ...
 ```
 
-If the datasets isn't ready, please use the dev-kit to prepare it.
-
-Link: https://1drv.ms/f/s!AoH0J35av8mcnKM6V6xOHcqx17LOzg?e=R3jaAF
+If the datasets isn't ready, please use the dev-kit(https://github.com/Mike-7777777/tum-traffic-dataset-dev-kit) to prepare it. Or you can just download the processed datasets here: https://1drv.ms/f/s!AoH0J35av8mcnKM6V6xOHcqx17LOzg?e=R3jaAF
 
 ## Config the Goe-SCC HPC system(SCC)
 
@@ -165,15 +172,13 @@ cd tools
 sbatch submit_train.sh
 ```
 
-**Known error**: An error occurs when running eval. At present, we can only successfully run to the train part.
-
 ## The OUTPUT folder, the Results
 
 ### Overview
 
 This folder contains the results and checkpoints of the training and evaluation phases of the model. The information is saved in the `\output\user\sun.qumeng\u11423\OpenPCDet\tools\cfgs\custom_models\pps\default` directory, which includes various subdirectories and files.
 
-`ckpt` check points download link: https://1drv.ms/u/s!AoH0J35av8mcnOcGV5VgGaWtJrnbWA?e=8cKpQw
+Download link: https://1drv.ms/u/s!AoH0J35av8mcnOcGV5VgGaWtJrnbWA?e=8cKpQw
 
 ### Directory Structure
 
