@@ -28,6 +28,8 @@ Before use this repo, you should already have the custom datasets:
 
 If the datasets isn't ready, please use the dev-kit to prepare it.
 
+Link: https://1drv.ms/f/s!AoH0J35av8mcnKM6V6xOHcqx17LOzg?e=R3jaAF
+
 ## Config the Goe-SCC HPC system(SCC)
 
 ### Conn to SCC
