@@ -166,3 +166,74 @@ sbatch submit_train.sh
 ```
 
 **Known error**: An error occurs when running eval. At present, we can only successfully run to the train part.
+
+## The OUTPUT folder, the Results
+
+### Overview
+
+This folder contains the results and checkpoints of the training and evaluation phases of the model. The information is saved in the `\output\user\sun.qumeng\u11423\OpenPCDet\tools\cfgs\custom_models\pps\default` directory, which includes various subdirectories and files.
+
+`ckpt` check points download link: https://1drv.ms/u/s!AoH0J35av8mcnOcGV5VgGaWtJrnbWA?e=8cKpQw
+
+### Directory Structure
+
+- **`ckpt`**:
+  - This folder contains the checkpoint files from the 50th to the 80th epochs. Due to space constraints, we uploaded the folder on OneDrive rather than GitHub.
+  
+- **`eval/eval_with_train`**:
+  - This directory holds the results of the evaluation phase.
+    - **`epoch_80/val/result.pkl`**: This file is used to save data for assessment results. You can load this file using the pickle library to view the details of the assessment results.
+    - **`tensorboard_val`**: This folder stores data files related to TensorBoard, a visualization tool for displaying metrics generated during the evaluation.
+
+- **`tensorboard`**:
+  - This folder contains TensorBoard data files for the training phase, similar to `tensorboard_val` but for training metrics.
+
+### Detailed Description
+
+#### Checkpoints
+
+- **`ckpt/`**:
+  - Checkpoints are saved periodically during training to allow for recovery and continuation of training from a specific state. 
+  - You can load the checkpoint in your training script to resume training or for inference purposes.
+
+#### Evaluation Results
+
+- **`eval/eval_with_train/epoch_80/val/result.pkl`**:
+  - This pickle file contains the detailed results of the evaluation after the 80th epoch.
+  - To view the contents of this file, you can use the following Python code:
+    ```python
+    import pickle
+    
+    with open('result.pkl', 'rb') as f:
+        data = pickle.load(f)
+        print(data)
+    ```
+  - The evaluation metrics include various performance indicators of the model on the validation dataset.
+
+- **`eval/eval_with_train/tensorboard_val`**:
+  - This directory contains TensorBoard event files that store metrics and other information generated during the evaluation phase.
+  - You can visualize these metrics by running TensorBoard:
+    ```bash
+    tensorboard --logdir=path_to_tensorboard_val_directory
+    ```
+  - Then, open your web browser and go to `http://localhost:6006` to view the evaluation metrics.
+
+#### Training Metrics
+
+- **`tensorboard/`**:
+  - Similar to `tensorboard_val`, this directory contains TensorBoard event files for the training phase.
+  - To visualize the training metrics, run TensorBoard:
+    ```bash
+    tensorboard --logdir=path_to_tensorboard_directory
+    ```
+  - Open your web browser and go to `http://localhost:6006` to view the training metrics.
+
+### Note
+
+The data is too large to upload in its entirety. Hence, it has been saved on a personal computer and will be uploaded to OneDrive for sharing. A link will be provided for access to the full dataset. 
+
+This readme file is partially completed by GPT-4o. Thanks OpenAI.
+
+### Contact
+
+For any issues or questions regarding this dataset, please contact @Mike-7777777
