@@ -5,8 +5,14 @@ POINT_CLOUD_RANGE: [0, -80, -9, 80, 80, 0]
 
 MAP_CLASS_TO_KITTI: {
     'CAR': 'Car',
-    'PEDESTRIAN': 'Pedestrian',
+    'VAN': 'Van',
     'TRUCK': 'Truck',
+    'PEDESTRIAN': 'Pedestrian',
+    'BICYCLE': 'Cyclist',
+    'MOTORCYCLE': 'Cyclist',  # 或者创建一个新的类别
+    'TRAILER': 'Misc',  # 根据实际情况映射
+    'BUS': 'Misc',  # 需要确保在数据集中有对应的处理
+    'EMERGENCY_VEHICLE': 'Misc'  # 需要根据实际情况映射
 }
 
 DATA_SPLIT: {

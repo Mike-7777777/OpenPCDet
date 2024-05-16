@@ -1,9 +1,0 @@
-usage: conda [-h] [--no-plugins] [-V] COMMAND ...
-conda: error: argument COMMAND: invalid choice: 'activate' (choose from 'clean', 'compare', 'config', 'create', 'info', 'init', 'install', 'list', 'notices', 'package', 'remove', 'uninstall', 'rename', 'run', 'search', 'update', 'upgrade', 'build', 'content-trust', 'convert', 'debug', 'develop', 'doctor', 'index', 'inspect', 'metapackage', 'render', 'skeleton', 'token', 'env', 'repo', 'server', 'verify', 'pack')
-/opt/sw/rev/23.12/linux-scientific7-haswell/gcc-11.4.0/anaconda3-2023.09-0-npsf7i/bin/python: Error while finding module specification for 'torch.utils.collect_env' (ModuleNotFoundError: No module named 'torch')
-Traceback (most recent call last):
-  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/train.py", line 7, in <module>
-    from test import repeat_eval_ckpt
-  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/test.py", line 11, in <module>
-    import torch
-ModuleNotFoundError: No module named 'torch'
