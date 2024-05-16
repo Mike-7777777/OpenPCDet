@@ -2,7 +2,7 @@ CLASS_NAMES: ['CAR', 'PEDESTRIAN', 'TRUCK']
 
 DATA_CONFIG: 
     _BASE_CONFIG_: cfgs/dataset_configs/custom_dataset.yaml
-    POINT_CLOUD_RANGE: [-94.6982, -104.359, -3, 118.7886, 63.81768, 1]
+    POINT_CLOUD_RANGE: [0, -80, -9, 80, 80, 0]
     DATA_PROCESSOR:
         - NAME: mask_points_and_boxes_outside_range
           REMOVE_OUTSIDE_BOXES: True
@@ -14,7 +14,7 @@ DATA_CONFIG:
           }
 
         - NAME: transform_points_to_voxels
-          VOXEL_SIZE: [0.16, 0.16, 4]
+          VOXEL_SIZE: [5, 5, 9]
           MAX_POINTS_PER_VOXEL: 32
           MAX_NUMBER_OF_VOXELS: {
             'train': 16000,
@@ -24,15 +24,14 @@ DATA_CONFIG:
         DISABLE_AUG_LIST: ['placeholder']
         AUG_CONFIG_LIST:
             - NAME: gt_sampling
-              USE_ROAD_PLANE: False
+              USE_ROAD_PLANE: True
               DB_INFO_PATH:
                   - custom_dbinfos_train.pkl
               PREPARE: {
-                 filter_by_min_points: ['CAR:5', 'PEDESTRIAN:5', 'TRUCK:5'],
-                #  filter_by_difficulty: [-1],
+                 filter_by_min_points: ['Car:5', 'Pedestrian:5', 'Cyclist:5'],
               }
 
-              SAMPLE_GROUPS: ['CAR:15','PEDESTRIAN:15', 'TRUCK:15']
+              SAMPLE_GROUPS: ['Car:15','Pedestrian:15', 'Cyclist:15']
               NUM_POINT_FEATURES: 4
               DATABASE_WITH_FAKELIDAR: False
               REMOVE_EXTRA_WIDTH: [0.0, 0.0, 0.0]
@@ -46,7 +45,6 @@ DATA_CONFIG:
 
             - NAME: random_world_scaling
               WORLD_SCALE_RANGE: [0.95, 1.05]
-
 MODEL:
     NAME: PointPillar
 

@@ -1,0 +1,25 @@
+================================================================================
+JobID = 21210559
+User = u11423, Account = all
+Partition = gpu, Nodelist = dge002
+================================================================================
+Submitting job with sbatch from directory: /home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools
+Home directory: /user/sun.qumeng/u11423
+Working directory: /user/sun.qumeng/u11423/OpenPCDet/tools
+Current node: dge002
+Python 3.8.19
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Wed_Sep_21_10:33:58_PDT_2022
+Cuda compilation tools, release 11.8, V11.8.89
+Build cuda_11.8.r11.8/compiler.31833905_0
+============ Job Information ===================================================
+Submitted: 2024-05-16T00:20:31
+Started: 2024-05-16T00:20:33
+Ended: 2024-05-16T00:20:50
+Elapsed: 1 min, Limit: 300 min, Difference: 299 min
+CPUs: 4, Nodes: 1
+============= ProfiT-HPC =======================================================
+To generate the ProfiT-HPC text report, run the following command
+profit-hpc 21210559
+================================================================================

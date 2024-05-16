@@ -1,0 +1,88 @@
+================================================================================
+JobID = 21211403
+User = u11423, Account = all
+Partition = gpu, Nodelist = dge002
+================================================================================
+Submitting job with sbatch from directory: /home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools
+Home directory: /user/sun.qumeng/u11423
+Working directory: /user/sun.qumeng/u11423/OpenPCDet/tools
+Current node: dge002
+Python 3.8.19
+Collecting environment information...
+PyTorch version: 2.3.0+cu118
+Is debug build: False
+CUDA used to build PyTorch: 11.8
+ROCM used to build PyTorch: N/A
+
+OS: Scientific Linux release 7.9 (Nitrogen) (x86_64)
+GCC version: (Spack GCC) 11.4.0
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.17
+
+Python version: 3.8.19 (default, Mar 20 2024, 19:58:24)  [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-3.10.0-1160.95.1.el7.x86_64-x86_64-with-glibc2.17
+Is CUDA available: True
+CUDA runtime version: 11.8.89
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: GPU 0: NVIDIA GeForce GTX 1080
+Nvidia driver version: 530.30.02
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+CPU:
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                24
+On-line CPU(s) list:   0-23
+Thread(s) per core:    1
+Core(s) per socket:    12
+Socket(s):             2
+NUMA node(s):          2
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 79
+Model name:            Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz
+Stepping:              1
+CPU MHz:               2326.086
+CPU max MHz:           2900.0000
+CPU min MHz:           1200.0000
+BogoMIPS:              4389.54
+Virtualization:        VT-x
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              256K
+L3 cache:              30720K
+NUMA node0 CPU(s):     0-11
+NUMA node1 CPU(s):     12-23
+Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb cat_l3 cdp_l3 invpcid_single intel_ppin rsb_ctxsw tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdt_a rdseed adx smap intel_pt xsaveopt cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local dtherm ida arat pln pts
+
+Versions of relevant libraries:
+[pip3] numpy==1.24.1
+[pip3] torch==2.3.0+cu118
+[pip3] torchaudio==2.3.0+cu118
+[pip3] torchvision==0.18.0+cu118
+[pip3] triton==2.3.0
+[conda] numpy                     1.24.1                   pypi_0    pypi
+[conda] torch                     2.3.0+cu118              pypi_0    pypi
+[conda] torchaudio                2.3.0+cu118              pypi_0    pypi
+[conda] torchvision               0.18.0+cu118             pypi_0    pypi
+[conda] triton                    2.3.0                    pypi_0    pypi
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Wed_Sep_21_10:33:58_PDT_2022
+Cuda compilation tools, release 11.8, V11.8.89
+Build cuda_11.8.r11.8/compiler.31833905_0
+============ Job Information ===================================================
+Submitted: 2024-05-16T00:58:17
+Started: 2024-05-16T00:58:18
+Ended: 2024-05-16T00:59:36
+Elapsed: 2 min, Limit: 300 min, Difference: 298 min
+CPUs: 4, Nodes: 1
+============= ProfiT-HPC =======================================================
+To generate the ProfiT-HPC text report, run the following command
+profit-hpc 21211403
+================================================================================

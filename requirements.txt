@@ -9,5 +9,8 @@ scikit-image
 tqdm
 torchvision
 SharedArray
-opencv-python
+opencv-python-headless
 pyquaternion
+
+pip install av2
+pip install kornia==0.6.8

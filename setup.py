@@ -30,7 +30,12 @@ def write_version_to_file(version, target_file):
 if __name__ == '__main__':
     version = '0.6.0+%s' % get_git_commit_number()
     write_version_to_file(version, 'pcdet/version.py')
-
+    
+    # 检查CUDA环境变量是否设置正确
+    cuda_home = os.environ.get('CUDA_HOME', '/opt/sw/rev/23.12/linux-scientific7-cascadelake/gcc-11.4.0/cuda-11.8.0-aaoynw')
+    if not os.path.exists(cuda_home):
+        raise EnvironmentError(f"CUDA_HOME directory {cuda_home} does not exist.")
+    
     setup(
         name='pcdet',
         version=version,

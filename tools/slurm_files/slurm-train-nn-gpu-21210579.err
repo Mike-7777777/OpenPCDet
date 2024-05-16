@@ -1,0 +1,2212 @@
+/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/runpy.py:127: RuntimeWarning: 'torch.utils.collect_env' found in sys.modules after import of package 'torch.utils', but prior to execution of 'torch.utils.collect_env'; this may result in unpredictable behaviour
+  warn(RuntimeWarning(msg))
+2024-05-16 00:27:51,723   INFO  **********************Start logging**********************
+2024-05-16 00:27:51,724   INFO  CUDA_VISIBLE_DEVICES=0
+2024-05-16 00:27:51,724   INFO  Training with a single process
+2024-05-16 00:27:51,724   INFO  cfg_file         /user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models/pps.yaml
+2024-05-16 00:27:51,724   INFO  batch_size       4
+2024-05-16 00:27:51,724   INFO  epochs           80
+2024-05-16 00:27:51,724   INFO  workers          4
+2024-05-16 00:27:51,724   INFO  extra_tag        default
+2024-05-16 00:27:51,724   INFO  ckpt             None
+2024-05-16 00:27:51,724   INFO  pretrained_model None
+2024-05-16 00:27:51,724   INFO  launcher         none
+2024-05-16 00:27:51,724   INFO  tcp_port         18888
+2024-05-16 00:27:51,724   INFO  sync_bn          False
+2024-05-16 00:27:51,725   INFO  fix_random_seed  False
+2024-05-16 00:27:51,725   INFO  ckpt_save_interval 1
+2024-05-16 00:27:51,725   INFO  local_rank       None
+2024-05-16 00:27:51,725   INFO  max_ckpt_save_num 30
+2024-05-16 00:27:51,725   INFO  merge_all_iters_to_one_epoch False
+2024-05-16 00:27:51,725   INFO  set_cfgs         None
+2024-05-16 00:27:51,725   INFO  max_waiting_mins 0
+2024-05-16 00:27:51,725   INFO  start_epoch      0
+2024-05-16 00:27:51,725   INFO  num_epochs_to_eval 0
+2024-05-16 00:27:51,725   INFO  save_to_file     False
+2024-05-16 00:27:51,725   INFO  use_tqdm_to_record False
+2024-05-16 00:27:51,725   INFO  logger_iter_interval 50
+2024-05-16 00:27:51,725   INFO  ckpt_save_time_interval 300
+2024-05-16 00:27:51,725   INFO  wo_gpu_stat      False
+2024-05-16 00:27:51,725   INFO  use_amp          False
+2024-05-16 00:27:51,725   INFO  cfg.ROOT_DIR: /home/uni08/hpc/sun.qumeng/u11423/OpenPCDet
+2024-05-16 00:27:51,726   INFO  cfg.LOCAL_RANK: 0
+2024-05-16 00:27:51,726   INFO  cfg.CLASS_NAMES: ['CAR', 'PEDESTRIAN', 'TRUCK']
+2024-05-16 00:27:51,726   INFO  ----------- DATA_CONFIG -----------
+2024-05-16 00:27:51,726   INFO  cfg.DATA_CONFIG.DATASET: CustomDataset
+2024-05-16 00:27:51,726   INFO  cfg.DATA_CONFIG.DATA_PATH: ../data/custom
+2024-05-16 00:27:51,726   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [-94.6982, -104.359, -3, 118.7886, 63.81768, 1]
+2024-05-16 00:27:51,726   INFO  ----------- MAP_CLASS_TO_KITTI -----------
+2024-05-16 00:27:51,726   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.CAR: Car
+2024-05-16 00:27:51,726   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.PEDESTRIAN: Pedestrian
+2024-05-16 00:27:51,726   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.TRUCK: Truck
+2024-05-16 00:27:51,726   INFO  ----------- DATA_SPLIT -----------
+2024-05-16 00:27:51,726   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2024-05-16 00:27:51,726   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2024-05-16 00:27:51,726   INFO  ----------- INFO_PATH -----------
+2024-05-16 00:27:51,726   INFO  cfg.DATA_CONFIG.INFO_PATH.train: ['custom_infos_train.pkl']
+2024-05-16 00:27:51,726   INFO  cfg.DATA_CONFIG.INFO_PATH.test: ['custom_infos_val.pkl']
+2024-05-16 00:27:51,727   INFO  ----------- POINT_FEATURE_ENCODING -----------
+2024-05-16 00:27:51,727   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2024-05-16 00:27:51,727   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity']
+2024-05-16 00:27:51,727   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity']
+2024-05-16 00:27:51,727   INFO  ----------- DATA_AUGMENTOR -----------
+2024-05-16 00:27:51,727   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2024-05-16 00:27:51,727   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'gt_sampling', 'USE_ROAD_PLANE': False, 'DB_INFO_PATH': ['custom_dbinfos_train.pkl'], 'PREPARE': {'filter_by_min_points': ['CAR:5', 'PEDESTRIAN:5', 'TRUCK:5']}, 'SAMPLE_GROUPS': ['CAR:15', 'PEDESTRIAN:15', 'TRUCK:15'], 'NUM_POINT_FEATURES': 4, 'DATABASE_WITH_FAKELIDAR': False, 'REMOVE_EXTRA_WIDTH': [0.0, 0.0, 0.0], 'LIMIT_WHOLE_SCENE': False}, {'NAME': 'random_world_flip', 'ALONG_AXIS_LIST': ['x']}, {'NAME': 'random_world_rotation', 'WORLD_ROT_ANGLE': [-0.78539816, 0.78539816]}, {'NAME': 'random_world_scaling', 'WORLD_SCALE_RANGE': [0.95, 1.05]}]
+2024-05-16 00:27:51,727   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': False}}, {'NAME': 'transform_points_to_voxels', 'VOXEL_SIZE': [0.16, 0.16, 4], 'MAX_POINTS_PER_VOXEL': 32, 'MAX_NUMBER_OF_VOXELS': {'train': 16000, 'test': 40000}}]
+2024-05-16 00:27:51,727   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/custom_dataset.yaml
+2024-05-16 00:27:51,727   INFO  ----------- MODEL -----------
+2024-05-16 00:27:51,727   INFO  cfg.MODEL.NAME: PointPillar
+2024-05-16 00:27:51,727   INFO  ----------- VFE -----------
+2024-05-16 00:27:51,727   INFO  cfg.MODEL.VFE.NAME: PillarVFE
+2024-05-16 00:27:51,727   INFO  cfg.MODEL.VFE.WITH_DISTANCE: False
+2024-05-16 00:27:51,727   INFO  cfg.MODEL.VFE.USE_ABSLOTE_XYZ: True
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.VFE.USE_NORM: True
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.VFE.NUM_FILTERS: [64]
+2024-05-16 00:27:51,728   INFO  ----------- MAP_TO_BEV -----------
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.MAP_TO_BEV.NAME: PointPillarScatter
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.MAP_TO_BEV.NUM_BEV_FEATURES: 64
+2024-05-16 00:27:51,728   INFO  ----------- BACKBONE_2D -----------
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.BACKBONE_2D.NAME: BaseBEVBackbone
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.BACKBONE_2D.LAYER_NUMS: [3, 5, 5]
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.BACKBONE_2D.LAYER_STRIDES: [2, 2, 2]
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.BACKBONE_2D.NUM_FILTERS: [64, 128, 256]
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.BACKBONE_2D.UPSAMPLE_STRIDES: [1, 2, 4]
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.BACKBONE_2D.NUM_UPSAMPLE_FILTERS: [128, 128, 128]
+2024-05-16 00:27:51,728   INFO  ----------- DENSE_HEAD -----------
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.DENSE_HEAD.NAME: AnchorHeadSingle
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.DENSE_HEAD.USE_DIRECTION_CLASSIFIER: True
+2024-05-16 00:27:51,728   INFO  cfg.MODEL.DENSE_HEAD.DIR_OFFSET: 0.78539
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.DIR_LIMIT_OFFSET: 0.0
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.NUM_DIR_BINS: 2
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.ANCHOR_GENERATOR_CONFIG: [{'class_name': 'CAR', 'anchor_sizes': [[3.9, 1.6, 1.56]], 'anchor_rotations': [0, 1.57], 'anchor_bottom_heights': [-1.78], 'align_center': False, 'feature_map_stride': 2, 'matched_threshold': 0.6, 'unmatched_threshold': 0.45}, {'class_name': 'PEDESTRIAN', 'anchor_sizes': [[0.8, 0.6, 1.73]], 'anchor_rotations': [0, 1.57], 'anchor_bottom_heights': [-0.6], 'align_center': False, 'feature_map_stride': 2, 'matched_threshold': 0.5, 'unmatched_threshold': 0.35}, {'class_name': 'TRUCK', 'anchor_sizes': [[1.76, 0.6, 1.73]], 'anchor_rotations': [0, 1.57], 'anchor_bottom_heights': [-0.6], 'align_center': False, 'feature_map_stride': 2, 'matched_threshold': 0.5, 'unmatched_threshold': 0.35}]
+2024-05-16 00:27:51,729   INFO  ----------- TARGET_ASSIGNER_CONFIG -----------
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NAME: AxisAlignedTargetAssigner
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.POS_FRACTION: -1.0
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.SAMPLE_SIZE: 512
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NORM_BY_NUM_EXAMPLES: False
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.MATCH_HEIGHT: False
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.BOX_CODER: ResidualCoder
+2024-05-16 00:27:51,729   INFO  ----------- LOSS_CONFIG -----------
+2024-05-16 00:27:51,729   INFO  ----------- LOSS_WEIGHTS -----------
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.cls_weight: 1.0
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loc_weight: 2.0
+2024-05-16 00:27:51,729   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.dir_weight: 0.2
+2024-05-16 00:27:51,730   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+2024-05-16 00:27:51,730   INFO  ----------- POST_PROCESSING -----------
+2024-05-16 00:27:51,730   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2024-05-16 00:27:51,730   INFO  cfg.MODEL.POST_PROCESSING.SCORE_THRESH: 0.1
+2024-05-16 00:27:51,730   INFO  cfg.MODEL.POST_PROCESSING.OUTPUT_RAW_SCORE: False
+2024-05-16 00:27:51,730   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: kitti
+2024-05-16 00:27:51,730   INFO  ----------- NMS_CONFIG -----------
+2024-05-16 00:27:51,730   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.MULTI_CLASSES_NMS: False
+2024-05-16 00:27:51,730   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2024-05-16 00:27:51,730   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.01
+2024-05-16 00:27:51,730   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 4096
+2024-05-16 00:27:51,730   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 500
+2024-05-16 00:27:51,730   INFO  ----------- OPTIMIZATION -----------
+2024-05-16 00:27:51,730   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 4
+2024-05-16 00:27:51,730   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 80
+2024-05-16 00:27:51,730   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2024-05-16 00:27:51,730   INFO  cfg.OPTIMIZATION.LR: 0.003
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.PCT_START: 0.4
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2024-05-16 00:27:51,731   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2024-05-16 00:27:51,731   INFO  cfg.TAG: pps
+2024-05-16 00:27:51,731   INFO  cfg.EXP_GROUP_PATH: user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models
+2024-05-16 00:27:51,791   INFO  ----------- Create dataloader & network & optimizer -----------
+2024-05-16 00:27:52,153   INFO  Database filter by min points CAR: 31706 => 16172
+2024-05-16 00:27:52,154   INFO  Database filter by min points PEDESTRIAN: 3472 => 3012
+2024-05-16 00:27:52,154   INFO  Database filter by min points TRUCK: 4208 => 3824
+2024-05-16 00:27:52,193   INFO  Loading Custom dataset.
+2024-05-16 00:27:52,264   INFO  Total samples for CUSTOM dataset: 3840
+/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/torch/functional.py:512: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3587.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+2024-05-16 00:28:11,422   INFO  ----------- Model PointPillar created, param count: 4834888 -----------
+2024-05-16 00:28:11,423   INFO  PointPillar(
+  (vfe): PillarVFE(
+    (pfn_layers): ModuleList(
+      (0): PFNLayer(
+        (linear): Linear(in_features=10, out_features=64, bias=False)
+        (norm): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (backbone_3d): None
+  (map_to_bev_module): PointPillarScatter()
+  (pfe): None
+  (backbone_2d): BaseBEVBackbone(
+    (blocks): ModuleList(
+      (0): Sequential(
+        (0): ZeroPad2d((1, 1, 1, 1))
+        (1): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+      )
+      (1): Sequential(
+        (0): ZeroPad2d((1, 1, 1, 1))
+        (1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+        (13): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (14): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (15): ReLU()
+        (16): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (17): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (18): ReLU()
+      )
+      (2): Sequential(
+        (0): ZeroPad2d((1, 1, 1, 1))
+        (1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+        (13): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (14): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (15): ReLU()
+        (16): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (17): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (18): ReLU()
+      )
+    )
+    (deblocks): ModuleList(
+      (0): Sequential(
+        (0): ConvTranspose2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): ConvTranspose2d(128, 128, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): ConvTranspose2d(256, 128, kernel_size=(4, 4), stride=(4, 4), bias=False)
+        (1): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+    )
+  )
+  (dense_head): AnchorHeadSingle(
+    (cls_loss_func): SigmoidFocalClassificationLoss()
+    (reg_loss_func): WeightedSmoothL1Loss()
+    (dir_loss_func): WeightedCrossEntropyLoss()
+    (conv_cls): Conv2d(384, 18, kernel_size=(1, 1), stride=(1, 1))
+    (conv_box): Conv2d(384, 42, kernel_size=(1, 1), stride=(1, 1))
+    (conv_dir_cls): Conv2d(384, 12, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (point_head): None
+  (roi_head): None
+)
+2024-05-16 00:28:11,424   INFO  **********************Start training user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models/pps(default)**********************
+epochs:   0%|          | 0/80 [00:00<?, ?it/s]
+train:   0%|          | 0/960 [00:00<?, ?it/s][Aepochs:   0%|          | 0/80 [00:37<?, ?it/s]
+Traceback (most recent call last):
+  File "train.py", line 233, in <module>
+    main()
+  File "train.py", line 178, in main
+    train_model(
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/train_utils/train_utils.py", line 180, in train_model
+    accumulated_iter = train_one_epoch(
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/train_utils/train_utils.py", line 33, in train_one_epoch
+    batch = next(dataloader_iter)
+  File "/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/torch/_utils.py", line 705, in reraise
+    raise exception
+RecursionError: Caught RecursionError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 214, in prepare_data
+    return self.__getitem__(new_index)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/custom/custom_dataset.py", line 124, in __getitem__
+    data_dict = self.prepare_data(data_dict=input_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/dataset.py", line 185, in prepare_data
+    data_dict = self.data_augmentor.forward(
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/augmentor/data_augmentor.py", line 302, in forward
+    data_dict = cur_augmentor(data_dict=data_dict)
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/augmentor/data_augmentor.py", line 62, in random_world_flip
+    gt_boxes, points, enable = getattr(augmentor_utils, 'random_flip_along_%s' % cur_axis)(
+  File "/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/augmentor/augmentor_utils.py", line 16, in random_flip_along_x
+    enable = np.random.choice([False, True], replace=False, p=[0.5, 0.5])
+  File "mtrand.pyx", line 990, in numpy.random.mtrand.RandomState.choice
+  File "<__array_function__ internals>", line 200, in count_nonzero
+  File "/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/numpy/core/numeric.py", line 493, in count_nonzero
+    return multiarray.count_nonzero(a)
+RecursionError: maximum recursion depth exceeded while calling a Python object
+
+
+                                              [A
