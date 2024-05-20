@@ -1,6 +1,31 @@
 
 # Visualize the results
 
+## Updates
+
+Debug attempts
+
+- [x] Check the `POINT_CLOUD_RANGE` config.
+- [x] Check the `transform_points_to_voxels` config.
+- [x] Check the `ANCHOR_GENERATOR_CONFIG` config.
+- [ ] Check the `EVAL_METRIC`.
+- [ ] Check if the `gt` data contains the labels out of lidar vision(out of range), [source](https://github.com/open-mmlab/OpenPCDet/issues/805).
+- [ ] Check if the `gt` data and `infos` files has expected format.
+
+2024.5.20
+
+We updated the config files, they are looking better now. Now, we got slightly higher acc on all tasks. But the bev and 3d acc is still poor.
+
+```log
+Car AP@0.70, 0.70, 0.70:
+bbox AP:83.3104, 83.3104, 83.3104
+bev  AP:9.0233, 9.0233, 9.0233
+3d   AP:4.5455, 4.5455, 4.5455
+aos  AP:59.84, 59.84, 59.84
+```
+
+We think it could be related to the kitti `EVAL_METRIC` that we are using in our model config.
+
 ## TensorBoard
 
 Check and select the env.
