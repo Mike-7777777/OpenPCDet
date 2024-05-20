@@ -9,7 +9,8 @@ Debug attempts
 - [x] Check the `transform_points_to_voxels` config.
 - [x] Check the `ANCHOR_GENERATOR_CONFIG` config.
 - [ ] Check the `EVAL_METRIC`.
-- [ ] Check if the `gt` data contains the labels out of lidar vision(out of range), [source](https://github.com/open-mmlab/OpenPCDet/issues/805).
+- [x] Check if the `gt` data contains the labels out of lidar vision(out of range), [source](https://github.com/open-mmlab/OpenPCDet/issues/805).
+  - Yes, we do have out-of-range points in our `infos` files. I cannot ensure it is unnormal.
 - [ ] Check if the `gt` data and `infos` files has expected format.
 
 2024.5.20
@@ -25,6 +26,13 @@ aos  AP:59.84, 59.84, 59.84
 ```
 
 We think it could be related to the kitti `EVAL_METRIC` that we are using in our model config.
+
+## Python
+
+- gbin.py: get the dataset pc range config
+- grange.py: get the model pc range config
+- ganc.py: get the anchor configs
+- show_gtd.py: get the first sample of gt-database
 
 ## TensorBoard
 
