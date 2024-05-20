@@ -5,6 +5,16 @@ Group members: QS, Leo, Ivan, Alex.
 
 Responsible for this article: QS aka @Mike-7777777
 
+This page contains instructions on how to train models on HPC.
+
+There is also a visualization of the current results in the visualize folder.
+
+Currently, we have a known issue causing our model to perform incredibly poorly. Possible directions for investigation are:
+
+- Errors in the configuration files (`custom_dataset.yaml` as well as `custom_models/pps.yaml`) in OpenPCDet.
+- The `create_custom_infos` function in OpenPCDet is not adapted to our dataset.
+- The label conversion function in Dev-Kit is buggy, resulting in data not being processed appropriately.
+
 - [Prepare the Data](https://github.com/Mike-7777777/OpenPCDet/blob/master/my_README.md#prepare-the-dataset)
 - [Config the HPC system](https://github.com/Mike-7777777/OpenPCDet/blob/master/my_README.md#config-the-goe-scc-hpc-systemscc)
 - [The OUTPUT of our model](https://github.com/Mike-7777777/OpenPCDet/blob/master/my_README.md#the-output-folder-the-Results)

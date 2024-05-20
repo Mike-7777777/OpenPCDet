@@ -1,8 +1,11 @@
-CLASS_NAMES: ['CAR', 'PEDESTRIAN', 'TRUCK']
+CLASS_NAMES: ['CAR', 'PEDESTRIAN', 'BICYCLE']
 
 DATA_CONFIG: 
     _BASE_CONFIG_: cfgs/dataset_configs/custom_dataset.yaml
-    POINT_CLOUD_RANGE: [0, -80, -9, 80, 80, 0]
+
+    # original dataset's RANGE: [340, 322, 10]
+    POINT_CLOUD_RANGE: [-171.96, -177.72, -10.0, 165.96, 139.72, 0.0]
+
     DATA_PROCESSOR:
         - NAME: mask_points_and_boxes_outside_range
           REMOVE_OUTSIDE_BOXES: True
@@ -14,24 +17,25 @@ DATA_CONFIG:
           }
 
         - NAME: transform_points_to_voxels
-          VOXEL_SIZE: [5, 5, 9]
+          VOXEL_SIZE: [0.64, 0.64, 10]
           MAX_POINTS_PER_VOXEL: 32
           MAX_NUMBER_OF_VOXELS: {
-            'train': 16000,
-            'test': 40000
+            'train': 1200000,
+            'test': 1200000
           }
+          
     DATA_AUGMENTOR:
         DISABLE_AUG_LIST: ['placeholder']
         AUG_CONFIG_LIST:
             - NAME: gt_sampling
-              USE_ROAD_PLANE: True
+              USE_ROAD_PLANE: False
               DB_INFO_PATH:
                   - custom_dbinfos_train.pkl
               PREPARE: {
-                 filter_by_min_points: ['Car:5', 'Pedestrian:5', 'Cyclist:5'],
+                 filter_by_min_points: ['CAR:5', 'PEDESTRIAN:5', 'BICYCLE:5'],
               }
 
-              SAMPLE_GROUPS: ['Car:15','Pedestrian:15', 'Cyclist:15']
+              SAMPLE_GROUPS: ['CAR:15','PEDESTRIAN:15', 'BICYCLE:15']
               NUM_POINT_FEATURES: 4
               DATABASE_WITH_FAKELIDAR: False
               REMOVE_EXTRA_WIDTH: [0.0, 0.0, 0.0]
@@ -76,38 +80,40 @@ MODEL:
         DIR_LIMIT_OFFSET: 0.0
         NUM_DIR_BINS: 2
 
+        # modified by getanc.py
         ANCHOR_GENERATOR_CONFIG: [
             {
                 'class_name': 'CAR',
-                'anchor_sizes': [[3.9, 1.6, 1.56]],
+                'anchor_sizes': [[1.58, 1.90, 4.16]],
                 'anchor_rotations': [0, 1.57],
-                'anchor_bottom_heights': [-1.78],
-                'align_center': False,
-                'feature_map_stride': 2,
-                'matched_threshold': 0.6,
-                'unmatched_threshold': 0.45
-            },
-            {
-                'class_name': 'PEDESTRIAN',
-                'anchor_sizes': [[0.8, 0.6, 1.73]],
-                'anchor_rotations': [0, 1.57],
-                'anchor_bottom_heights': [-0.6],
+                'anchor_bottom_heights': [-0.79],
                 'align_center': False,
                 'feature_map_stride': 2,
                 'matched_threshold': 0.5,
                 'unmatched_threshold': 0.35
             },
             {
-                'class_name': 'TRUCK',
-                'anchor_sizes': [[1.76, 0.6, 1.73]],
+                'class_name': 'PEDESTRIAN',
+                'anchor_sizes': [[1.76, 0.76, 0.82]],
                 'anchor_rotations': [0, 1.57],
-                'anchor_bottom_heights': [-0.6],
+                'anchor_bottom_heights': [-0.88],
+                'align_center': False,
+                'feature_map_stride': 2,
+                'matched_threshold': 0.5,
+                'unmatched_threshold': 0.35
+            },
+            {
+                'class_name': 'BICYCLE',
+                'anchor_sizes': [[1.52, 0.64, 1.00]],
+                'anchor_rotations': [0, 1.57],
+                'anchor_bottom_heights': [-0.76],
                 'align_center': False,
                 'feature_map_stride': 2,
                 'matched_threshold': 0.5,
                 'unmatched_threshold': 0.35
             }
         ]
+
 
         TARGET_ASSIGNER_CONFIG:
             NAME: AxisAlignedTargetAssigner
@@ -139,9 +145,10 @@ MODEL:
             NMS_PRE_MAXSIZE: 4096
             NMS_POST_MAXSIZE: 500
 
+# modified
 OPTIMIZATION:
     BATCH_SIZE_PER_GPU: 4
-    NUM_EPOCHS: 80
+    NUM_EPOCHS: 15
 
     OPTIMIZER: adam_onecycle
     LR: 0.003
@@ -155,7 +162,7 @@ OPTIMIZATION:
     LR_DECAY: 0.1
     LR_CLIP: 0.0000001
 
-    LR_WARMUP: False
+    LR_WARMUP: True
     WARMUP_EPOCH: 1
 
     GRAD_NORM_CLIP: 10

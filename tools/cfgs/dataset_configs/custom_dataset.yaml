@@ -1,7 +1,8 @@
 DATASET: 'CustomDataset'
 DATA_PATH: '../data/custom'
 
-POINT_CLOUD_RANGE: [0, -80, -9, 80, 80, 0]
+# Set the proper POINT_CLOUD_RANGE, getting from `gbin.py`
+POINT_CLOUD_RANGE: [-173, -180, -10, 167, 142, 0]
 
 MAP_CLASS_TO_KITTI: {
     'CAR': 'Car',
@@ -9,7 +10,7 @@ MAP_CLASS_TO_KITTI: {
     'TRUCK': 'Truck',
     'PEDESTRIAN': 'Pedestrian',
     'BICYCLE': 'Cyclist',
-    'MOTORCYCLE': 'Cyclist',  # 或者创建一个新的类别
+    'MOTORCYCLE': 'Misc',  # 或者创建一个新的类别
     'TRAILER': 'Misc',  # 根据实际情况映射
     'BUS': 'Misc',  # 需要确保在数据集中有对应的处理
     'EMERGENCY_VEHICLE': 'Misc'  # 需要根据实际情况映射
@@ -39,10 +40,10 @@ DATA_AUGMENTOR:
           DB_INFO_PATH:
               - custom_dbinfos_train.pkl
           PREPARE: {
-             filter_by_min_points: ['CAR:5', 'PEDESTRIAN:5', 'TRUCK:5'],
+             filter_by_min_points: ['CAR:5', 'PEDESTRIAN:5', 'BICYCLE:5'],
           }
 
-          SAMPLE_GROUPS: ['CAR:20', 'PEDESTRIAN:15', 'TRUCK:15']
+          SAMPLE_GROUPS: ['CAR:20', 'PEDESTRIAN:15', 'BICYCLE:15']
           NUM_POINT_FEATURES: 4
           DATABASE_WITH_FAKELIDAR: False
           REMOVE_EXTRA_WIDTH: [0.0, 0.0, 0.0]
@@ -66,11 +67,12 @@ DATA_PROCESSOR:
         'train': True,
         'test': False
       }
-
+      
+    # tum is bigger than kitti, so we use larger voxel size and larger max_number
     - NAME: transform_points_to_voxels
-      VOXEL_SIZE: [5, 5, 9]
-      MAX_POINTS_PER_VOXEL: 32
+      VOXEL_SIZE: [0.224, 0.224, 0.25]
+      MAX_POINTS_PER_VOXEL: 10
       MAX_NUMBER_OF_VOXELS: {
-        'train': 16000,
-        'test': 40000
+        'train': 1200000,
+        'test': 1200000
       }

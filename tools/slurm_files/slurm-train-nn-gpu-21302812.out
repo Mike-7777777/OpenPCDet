@@ -1,0 +1,26 @@
+================================================================================
+JobID = 21302812
+User = u11423, Account = all
+Partition = gpu, Nodelist = agq005
+================================================================================
+Submitting job with sbatch from directory: /home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools
+Home directory: /user/sun.qumeng/u11423
+Working directory: /user/sun.qumeng/u11423/OpenPCDet/tools
+Current node: agq005
+Python 3.8.19
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Wed_Sep_21_10:33:58_PDT_2022
+Cuda compilation tools, release 11.8, V11.8.89
+Build cuda_11.8.r11.8/compiler.31833905_0
+==> Checkpoint trained from version: pcdet+0.6.0+37a88e1+pya5ea803
+Wait 30 seconds for next check (progress: 0.0 / 0 minutes): /home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/output/user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models/pps/default/ckpt ============ Job Information ===================================================
+Submitted: 2024-05-18T23:56:34
+Started: 2024-05-18T23:56:36
+Ended: 2024-05-19T00:57:54
+Elapsed: 62 min, Limit: 120 min, Difference: 58 min
+CPUs: 8, Nodes: 1
+============= ProfiT-HPC =======================================================
+To generate the ProfiT-HPC text report, run the following command
+profit-hpc 21302812
+================================================================================

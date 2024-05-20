@@ -1,0 +1,1019 @@
+2024-05-19 01:43:18,942   INFO  **********************Start logging**********************
+2024-05-19 01:43:18,942   INFO  CUDA_VISIBLE_DEVICES=0
+2024-05-19 01:43:18,942   INFO  Training with a single process
+2024-05-19 01:43:18,942   INFO  cfg_file         /user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models/pps.yaml
+2024-05-19 01:43:18,942   INFO  batch_size       16
+2024-05-19 01:43:18,942   INFO  epochs           50
+2024-05-19 01:43:18,942   INFO  workers          4
+2024-05-19 01:43:18,943   INFO  extra_tag        default
+2024-05-19 01:43:18,943   INFO  ckpt             None
+2024-05-19 01:43:18,943   INFO  pretrained_model None
+2024-05-19 01:43:18,943   INFO  launcher         none
+2024-05-19 01:43:18,943   INFO  tcp_port         18888
+2024-05-19 01:43:18,943   INFO  sync_bn          False
+2024-05-19 01:43:18,943   INFO  fix_random_seed  False
+2024-05-19 01:43:18,943   INFO  ckpt_save_interval 1
+2024-05-19 01:43:18,943   INFO  local_rank       None
+2024-05-19 01:43:18,943   INFO  max_ckpt_save_num 30
+2024-05-19 01:43:18,943   INFO  merge_all_iters_to_one_epoch False
+2024-05-19 01:43:18,943   INFO  set_cfgs         None
+2024-05-19 01:43:18,943   INFO  max_waiting_mins 0
+2024-05-19 01:43:18,943   INFO  start_epoch      0
+2024-05-19 01:43:18,943   INFO  num_epochs_to_eval 0
+2024-05-19 01:43:18,943   INFO  save_to_file     False
+2024-05-19 01:43:18,943   INFO  use_tqdm_to_record False
+2024-05-19 01:43:18,943   INFO  logger_iter_interval 50
+2024-05-19 01:43:18,943   INFO  ckpt_save_time_interval 300
+2024-05-19 01:43:18,943   INFO  wo_gpu_stat      False
+2024-05-19 01:43:18,943   INFO  use_amp          False
+2024-05-19 01:43:18,943   INFO  cfg.ROOT_DIR: /home/uni08/hpc/sun.qumeng/u11423/OpenPCDet
+2024-05-19 01:43:18,943   INFO  cfg.LOCAL_RANK: 0
+2024-05-19 01:43:18,943   INFO  cfg.CLASS_NAMES: ['CAR', 'PEDESTRIAN', 'BICYCLE']
+2024-05-19 01:43:18,943   INFO  ----------- DATA_CONFIG -----------
+2024-05-19 01:43:18,943   INFO  cfg.DATA_CONFIG.DATASET: CustomDataset
+2024-05-19 01:43:18,943   INFO  cfg.DATA_CONFIG.DATA_PATH: ../data/custom
+2024-05-19 01:43:18,943   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [0, -80, -9, 80, 80, 0]
+2024-05-19 01:43:18,943   INFO  ----------- MAP_CLASS_TO_KITTI -----------
+2024-05-19 01:43:18,943   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.CAR: Car
+2024-05-19 01:43:18,943   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.VAN: Van
+2024-05-19 01:43:18,943   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.TRUCK: Truck
+2024-05-19 01:43:18,943   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.PEDESTRIAN: Pedestrian
+2024-05-19 01:43:18,943   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.BICYCLE: Cyclist
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.MOTORCYCLE: Misc
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.TRAILER: Misc
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.BUS: Misc
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.EMERGENCY_VEHICLE: Misc
+2024-05-19 01:43:18,944   INFO  ----------- DATA_SPLIT -----------
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2024-05-19 01:43:18,944   INFO  ----------- INFO_PATH -----------
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.INFO_PATH.train: ['custom_infos_train.pkl']
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.INFO_PATH.test: ['custom_infos_val.pkl']
+2024-05-19 01:43:18,944   INFO  ----------- POINT_FEATURE_ENCODING -----------
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity']
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity']
+2024-05-19 01:43:18,944   INFO  ----------- DATA_AUGMENTOR -----------
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'gt_sampling', 'USE_ROAD_PLANE': False, 'DB_INFO_PATH': ['custom_dbinfos_train.pkl'], 'PREPARE': {'filter_by_min_points': ['CAR:5', 'PEDESTRIAN:5', 'BICYCLE:5']}, 'SAMPLE_GROUPS': ['CAR:15', 'PEDESTRIAN:15', 'BICYCLE:15'], 'NUM_POINT_FEATURES': 4, 'DATABASE_WITH_FAKELIDAR': False, 'REMOVE_EXTRA_WIDTH': [0.0, 0.0, 0.0], 'LIMIT_WHOLE_SCENE': False}, {'NAME': 'random_world_flip', 'ALONG_AXIS_LIST': ['x']}, {'NAME': 'random_world_rotation', 'WORLD_ROT_ANGLE': [-0.78539816, 0.78539816]}, {'NAME': 'random_world_scaling', 'WORLD_SCALE_RANGE': [0.95, 1.05]}]
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': False}}, {'NAME': 'transform_points_to_voxels', 'VOXEL_SIZE': [5, 5, 9], 'MAX_POINTS_PER_VOXEL': 32, 'MAX_NUMBER_OF_VOXELS': {'train': 16000, 'test': 40000}}]
+2024-05-19 01:43:18,944   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/custom_dataset.yaml
+2024-05-19 01:43:18,944   INFO  ----------- MODEL -----------
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.NAME: PointPillar
+2024-05-19 01:43:18,944   INFO  ----------- VFE -----------
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.VFE.NAME: PillarVFE
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.VFE.WITH_DISTANCE: False
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.VFE.USE_ABSLOTE_XYZ: True
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.VFE.USE_NORM: True
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.VFE.NUM_FILTERS: [64]
+2024-05-19 01:43:18,944   INFO  ----------- MAP_TO_BEV -----------
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.MAP_TO_BEV.NAME: PointPillarScatter
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.MAP_TO_BEV.NUM_BEV_FEATURES: 64
+2024-05-19 01:43:18,944   INFO  ----------- BACKBONE_2D -----------
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.BACKBONE_2D.NAME: BaseBEVBackbone
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.BACKBONE_2D.LAYER_NUMS: [3, 5, 5]
+2024-05-19 01:43:18,944   INFO  cfg.MODEL.BACKBONE_2D.LAYER_STRIDES: [2, 2, 2]
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.BACKBONE_2D.NUM_FILTERS: [64, 128, 256]
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.BACKBONE_2D.UPSAMPLE_STRIDES: [1, 2, 4]
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.BACKBONE_2D.NUM_UPSAMPLE_FILTERS: [128, 128, 128]
+2024-05-19 01:43:18,945   INFO  ----------- DENSE_HEAD -----------
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.NAME: AnchorHeadSingle
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.USE_DIRECTION_CLASSIFIER: True
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.DIR_OFFSET: 0.78539
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.DIR_LIMIT_OFFSET: 0.0
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.NUM_DIR_BINS: 2
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.ANCHOR_GENERATOR_CONFIG: [{'class_name': 'CAR', 'anchor_sizes': [[3.9, 1.6, 1.56]], 'anchor_rotations': [0, 1.57], 'anchor_bottom_heights': [-1.78], 'align_center': False, 'feature_map_stride': 2, 'matched_threshold': 0.6, 'unmatched_threshold': 0.45}, {'class_name': 'PEDESTRIAN', 'anchor_sizes': [[0.8, 0.6, 1.73]], 'anchor_rotations': [0, 1.57], 'anchor_bottom_heights': [-0.6], 'align_center': False, 'feature_map_stride': 2, 'matched_threshold': 0.5, 'unmatched_threshold': 0.35}, {'class_name': 'BICYCLE', 'anchor_sizes': [[1.76, 0.6, 1.73]], 'anchor_rotations': [0, 1.57], 'anchor_bottom_heights': [-0.6], 'align_center': False, 'feature_map_stride': 2, 'matched_threshold': 0.5, 'unmatched_threshold': 0.35}]
+2024-05-19 01:43:18,945   INFO  ----------- TARGET_ASSIGNER_CONFIG -----------
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NAME: AxisAlignedTargetAssigner
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.POS_FRACTION: -1.0
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.SAMPLE_SIZE: 512
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NORM_BY_NUM_EXAMPLES: False
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.MATCH_HEIGHT: False
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.BOX_CODER: ResidualCoder
+2024-05-19 01:43:18,945   INFO  ----------- LOSS_CONFIG -----------
+2024-05-19 01:43:18,945   INFO  ----------- LOSS_WEIGHTS -----------
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.cls_weight: 1.0
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loc_weight: 2.0
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.dir_weight: 0.2
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+2024-05-19 01:43:18,945   INFO  ----------- POST_PROCESSING -----------
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.POST_PROCESSING.SCORE_THRESH: 0.1
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.POST_PROCESSING.OUTPUT_RAW_SCORE: False
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: kitti
+2024-05-19 01:43:18,945   INFO  ----------- NMS_CONFIG -----------
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.MULTI_CLASSES_NMS: False
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2024-05-19 01:43:18,945   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.01
+2024-05-19 01:43:18,946   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 4096
+2024-05-19 01:43:18,946   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 500
+2024-05-19 01:43:18,946   INFO  ----------- OPTIMIZATION -----------
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 16
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 50
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.LR: 0.003
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.PCT_START: 0.4
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.LR_WARMUP: True
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2024-05-19 01:43:18,946   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2024-05-19 01:43:18,946   INFO  cfg.TAG: pps
+2024-05-19 01:43:18,946   INFO  cfg.EXP_GROUP_PATH: user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models
+2024-05-19 01:43:18,969   INFO  ----------- Create dataloader & network & optimizer -----------
+2024-05-19 01:43:19,257   INFO  Database filter by min points CAR: 31706 => 16172
+2024-05-19 01:43:19,258   INFO  Database filter by min points PEDESTRIAN: 3472 => 3012
+2024-05-19 01:43:19,258   INFO  Database filter by min points BICYCLE: 598 => 542
+2024-05-19 01:43:19,287   INFO  Loading Custom dataset.
+2024-05-19 01:43:19,369   INFO  Total samples for CUSTOM dataset: 3840
+/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/torch/functional.py:512: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3587.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+2024-05-19 01:43:20,977   INFO  ----------- Model PointPillar created, param count: 4834888 -----------
+2024-05-19 01:43:20,977   INFO  PointPillar(
+  (vfe): PillarVFE(
+    (pfn_layers): ModuleList(
+      (0): PFNLayer(
+        (linear): Linear(in_features=10, out_features=64, bias=False)
+        (norm): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (backbone_3d): None
+  (map_to_bev_module): PointPillarScatter()
+  (pfe): None
+  (backbone_2d): BaseBEVBackbone(
+    (blocks): ModuleList(
+      (0): Sequential(
+        (0): ZeroPad2d((1, 1, 1, 1))
+        (1): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+      )
+      (1): Sequential(
+        (0): ZeroPad2d((1, 1, 1, 1))
+        (1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+        (13): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (14): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (15): ReLU()
+        (16): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (17): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (18): ReLU()
+      )
+      (2): Sequential(
+        (0): ZeroPad2d((1, 1, 1, 1))
+        (1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+        (13): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (14): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (15): ReLU()
+        (16): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (17): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (18): ReLU()
+      )
+    )
+    (deblocks): ModuleList(
+      (0): Sequential(
+        (0): ConvTranspose2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): ConvTranspose2d(128, 128, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): ConvTranspose2d(256, 128, kernel_size=(4, 4), stride=(4, 4), bias=False)
+        (1): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+    )
+  )
+  (dense_head): AnchorHeadSingle(
+    (cls_loss_func): SigmoidFocalClassificationLoss()
+    (reg_loss_func): WeightedSmoothL1Loss()
+    (dir_loss_func): WeightedCrossEntropyLoss()
+    (conv_cls): Conv2d(384, 18, kernel_size=(1, 1), stride=(1, 1))
+    (conv_box): Conv2d(384, 42, kernel_size=(1, 1), stride=(1, 1))
+    (conv_dir_cls): Conv2d(384, 12, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (point_head): None
+  (roi_head): None
+)
+2024-05-19 01:43:20,978   INFO  **********************Start training user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models/pps(default)**********************
+epochs:   0%|          | 0/50 [00:00<?, ?it/s]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:43:25,590   INFO  Train:    1/50 (  2%) [   0/240 (  0%)]  Loss: 11.45 (11.5)  LR: 3.000e-04  Time cost: 00:04/17:00 [00:04/14:10:44]  Acc_iter 1           Data time: 2.25(2.25)  Forward time: 2.00(2.00)  Batch time: 4.25(4.25)
+2024-05-19 01:43:35,250   INFO  Train:    1/50 (  2%) [  49/240 ( 20%)]  Loss: 3.338 (6.35)  LR: 3.007e-04  Time cost: 00:13/00:53 [00:14/55:25]  Acc_iter 50          Data time: 0.04(0.11)  Forward time: 0.13(0.17)  Batch time: 0.18(0.28)
+2024-05-19 01:43:43,890   INFO  Train:    1/50 (  2%) [  99/240 ( 41%)]  Loss: 2.553 (4.67)  LR: 3.028e-04  Time cost: 00:22/00:31 [00:22/44:44]  Acc_iter 100         Data time: 0.00(0.08)  Forward time: 0.13(0.15)  Batch time: 0.13(0.23)
+2024-05-19 01:43:51,838   INFO  Train:    1/50 (  2%) [ 149/240 ( 62%)]  Loss: 2.406 (3.94)  LR: 3.064e-04  Time cost: 00:30/00:18 [00:30/40:09]  Acc_iter 150         Data time: 0.00(0.06)  Forward time: 0.14(0.14)  Batch time: 0.14(0.20)
+2024-05-19 01:43:53,278   INFO  agq004              Sun May 19 01:43:53 2024  530.30.02
+[0] Quadro RTX 5000 | 32°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:44:00,214   INFO  Train:    1/50 (  2%) [ 199/240 ( 83%)]  Loss: 2.266 (3.54)  LR: 3.114e-04  Time cost: 00:38/00:07 [00:39/38:13]  Acc_iter 200         Data time: 0.05(0.05)  Forward time: 0.13(0.14)  Batch time: 0.19(0.19)
+2024-05-19 01:44:05,854   INFO  Train:    1/50 (  2%) [ 239/240 (100%)]  Loss: 2.134 (3.33)  LR: 3.165e-04  Time cost: 00:44/00:00 [00:44/36:21]  Acc_iter 240         Data time: 0.00(0.05)  Forward time: 0.12(0.14)  Batch time: 0.12(0.19)
+
+                                              [Aepochs:   2%|▏         | 1/50 [00:45<36:58, 45.27s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:44:07,122   INFO  Train:    2/50 (  4%) [   0/240 (  0%)]  Loss: 2.370 (2.37)  LR: 3.166e-04  Time cost: 00:00/02:47 [00:46/2:16:32]  Acc_iter 241         Data time: 0.56(0.56)  Forward time: 0.14(0.14)  Batch time: 0.70(0.70)
+2024-05-19 01:44:08,316   INFO  Train:    2/50 (  4%) [   9/240 (  4%)]  Loss: 2.274 (2.28)  LR: 3.179e-04  Time cost: 00:01/00:43 [00:47/37:01]  Acc_iter 250         Data time: 0.00(0.06)  Forward time: 0.12(0.13)  Batch time: 0.13(0.19)
+2024-05-19 01:44:15,072   INFO  Train:    2/50 (  4%) [  59/240 ( 25%)]  Loss: 2.497 (2.26)  LR: 3.258e-04  Time cost: 00:08/00:26 [00:54/28:06]  Acc_iter 300         Data time: 0.00(0.01)  Forward time: 0.15(0.13)  Batch time: 0.15(0.14)
+2024-05-19 01:44:15,886   INFO  agq004              Sun May 19 01:44:15 2024  530.30.02
+[0] Quadro RTX 5000 | 33°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:44:22,520   INFO  Train:    2/50 (  4%) [ 109/240 ( 45%)]  Loss: 2.591 (2.23)  LR: 3.351e-04  Time cost: 00:16/00:19 [01:01/28:24]  Acc_iter 350         Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:44:29,192   INFO  Train:    2/50 (  4%) [ 159/240 ( 66%)]  Loss: 2.348 (2.20)  LR: 3.458e-04  Time cost: 00:22/00:11 [01:08/27:30]  Acc_iter 400         Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:44:36,197   INFO  Train:    2/50 (  4%) [ 209/240 ( 87%)]  Loss: 2.415 (2.19)  LR: 3.579e-04  Time cost: 00:29/00:04 [01:15/27:17]  Acc_iter 450         Data time: 0.04(0.01)  Forward time: 0.13(0.13)  Batch time: 0.16(0.14)
+2024-05-19 01:44:36,985   INFO  agq004              Sun May 19 01:44:36 2024  530.30.02
+[0] Quadro RTX 5000 | 34°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:44:41,004   INFO  Train:    2/50 (  4%) [ 239/240 (100%)]  Loss: 1.885 (2.17)  LR: 3.658e-04  Time cost: 00:34/00:00 [01:20/27:39]  Acc_iter 480         Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:   4%|▍         | 2/50 [01:20<31:31, 39.41s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:44:42,475   INFO  Train:    3/50 (  6%) [   0/240 (  0%)]  Loss: 2.132 (2.13)  LR: 3.661e-04  Time cost: 00:00/02:58 [01:21/2:22:26]  Acc_iter 481         Data time: 0.61(0.61)  Forward time: 0.13(0.13)  Batch time: 0.74(0.74)
+2024-05-19 01:44:45,117   INFO  Train:    3/50 (  6%) [  19/240 (  8%)]  Loss: 1.909 (2.03)  LR: 3.714e-04  Time cost: 00:03/00:37 [01:24/32:26]  Acc_iter 500         Data time: 0.00(0.03)  Forward time: 0.14(0.13)  Batch time: 0.14(0.17)
+2024-05-19 01:44:51,938   INFO  Train:    3/50 (  6%) [  69/240 ( 29%)]  Loss: 1.885 (2.02)  LR: 3.862e-04  Time cost: 00:10/00:24 [01:30/27:49]  Acc_iter 550         Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:44:58,687   INFO  Train:    3/50 (  6%) [ 119/240 ( 50%)]  Loss: 2.141 (2.01)  LR: 4.024e-04  Time cost: 00:16/00:17 [01:37/26:50]  Acc_iter 600         Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:44:59,406   INFO  agq004              Sun May 19 01:44:59 2024  530.30.02
+[0] Quadro RTX 5000 | 35°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:45:06,079   INFO  Train:    3/50 (  6%) [ 169/240 ( 70%)]  Loss: 1.878 (2.01)  LR: 4.200e-04  Time cost: 00:24/00:10 [01:45/27:05]  Acc_iter 650         Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:45:13,044   INFO  Train:    3/50 (  6%) [ 219/240 ( 91%)]  Loss: 1.727 (2.00)  LR: 4.388e-04  Time cost: 00:31/00:02 [01:52/26:48]  Acc_iter 700         Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:45:15,926   INFO  Train:    3/50 (  6%) [ 239/240 (100%)]  Loss: 1.878 (1.99)  LR: 4.467e-04  Time cost: 00:34/00:00 [01:54/26:47]  Acc_iter 720         Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:   6%|▌         | 3/50 [01:55<29:09, 37.22s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:45:17,164   INFO  Train:    4/50 (  8%) [   0/240 (  0%)]  Loss: 1.595 (1.60)  LR: 4.471e-04  Time cost: 00:00/03:13 [01:56/2:31:27]  Acc_iter 721         Data time: 0.67(0.67)  Forward time: 0.14(0.14)  Batch time: 0.81(0.81)
+2024-05-19 01:45:21,260   INFO  Train:    4/50 (  8%) [  29/240 ( 12%)]  Loss: 1.963 (1.90)  LR: 4.590e-04  Time cost: 00:04/00:34 [02:00/30:38]  Acc_iter 750         Data time: 0.00(0.03)  Forward time: 0.13(0.13)  Batch time: 0.13(0.16)
+2024-05-19 01:45:21,991   INFO  agq004              Sun May 19 01:45:21 2024  530.30.02
+[0] Quadro RTX 5000 | 35°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:45:28,658   INFO  Train:    4/50 (  8%) [  79/240 ( 33%)]  Loss: 2.171 (1.92)  LR: 4.804e-04  Time cost: 00:12/00:24 [02:07/28:42]  Acc_iter 800         Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:45:35,372   INFO  Train:    4/50 (  8%) [ 129/240 ( 54%)]  Loss: 1.711 (1.91)  LR: 5.031e-04  Time cost: 00:19/00:16 [02:14/27:10]  Acc_iter 850         Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:45:42,526   INFO  Train:    4/50 (  8%) [ 179/240 ( 75%)]  Loss: 1.822 (1.90)  LR: 5.270e-04  Time cost: 00:26/00:08 [02:21/26:53]  Acc_iter 900         Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:45:43,321   INFO  agq004              Sun May 19 01:45:43 2024  530.30.02
+[0] Quadro RTX 5000 | 36°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:45:50,016   INFO  Train:    4/50 (  8%) [ 229/240 ( 95%)]  Loss: 2.005 (1.89)  LR: 5.521e-04  Time cost: 00:33/00:01 [02:29/26:57]  Acc_iter 950         Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:45:51,306   INFO  Train:    4/50 (  8%) [ 239/240 (100%)]  Loss: 1.787 (1.89)  LR: 5.573e-04  Time cost: 00:34/00:00 [02:30/26:47]  Acc_iter 960         Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.15)
+
+                                              [Aepochs:   8%|▊         | 4/50 [02:30<28:03, 36.60s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:45:52,686   INFO  Train:    5/50 ( 10%) [   0/240 (  0%)]  Loss: 1.776 (1.78)  LR: 5.578e-04  Time cost: 00:00/02:46 [02:31/2:07:51]  Acc_iter 961         Data time: 0.54(0.54)  Forward time: 0.15(0.15)  Batch time: 0.69(0.69)
+2024-05-19 01:45:57,896   INFO  Train:    5/50 ( 10%) [  39/240 ( 16%)]  Loss: 1.948 (1.88)  LR: 5.784e-04  Time cost: 00:05/00:29 [02:36/27:04]  Acc_iter 1000        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:46:04,915   INFO  Train:    5/50 ( 10%) [  89/240 ( 37%)]  Loss: 2.032 (1.85)  LR: 6.059e-04  Time cost: 00:12/00:21 [02:43/26:12]  Acc_iter 1050        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:46:05,668   INFO  agq004              Sun May 19 01:46:05 2024  530.30.02
+[0] Quadro RTX 5000 | 36°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:46:12,423   INFO  Train:    5/50 ( 10%) [ 139/240 ( 58%)]  Loss: 2.019 (1.85)  LR: 6.344e-04  Time cost: 00:20/00:14 [02:51/26:30]  Acc_iter 1100        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:46:19,509   INFO  Train:    5/50 ( 10%) [ 189/240 ( 79%)]  Loss: 1.944 (1.85)  LR: 6.641e-04  Time cost: 00:27/00:07 [02:58/26:11]  Acc_iter 1150        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:46:26,254   INFO  Train:    5/50 ( 10%) [ 239/240 (100%)]  Loss: 2.071 (1.86)  LR: 6.948e-04  Time cost: 00:34/00:00 [03:05/25:41]  Acc_iter 1200        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+2024-05-19 01:46:26,885   INFO  agq004              Sun May 19 01:46:26 2024  530.30.02
+[0] Quadro RTX 5000 | 36°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+
+                                              [Aepochs:  10%|█         | 5/50 [03:06<27:07, 36.17s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:46:28,093   INFO  Train:    6/50 ( 12%) [   0/240 (  0%)]  Loss: 1.914 (1.91)  LR: 6.954e-04  Time cost: 00:00/02:41 [03:07/2:01:15]  Acc_iter 1201        Data time: 0.52(0.52)  Forward time: 0.15(0.15)  Batch time: 0.67(0.67)
+2024-05-19 01:46:34,948   INFO  Train:    6/50 ( 12%) [  49/240 ( 20%)]  Loss: 1.467 (1.82)  LR: 7.265e-04  Time cost: 00:07/00:28 [03:13/26:58]  Acc_iter 1250        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:46:41,799   INFO  Train:    6/50 ( 12%) [  99/240 ( 41%)]  Loss: 1.721 (1.82)  LR: 7.592e-04  Time cost: 00:14/00:20 [03:20/25:38]  Acc_iter 1300        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:46:48,535   INFO  Train:    6/50 ( 12%) [ 149/240 ( 62%)]  Loss: 1.508 (1.81)  LR: 7.929e-04  Time cost: 00:21/00:12 [03:27/24:59]  Acc_iter 1350        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:46:49,334   INFO  agq004              Sun May 19 01:46:49 2024  530.30.02
+[0] Quadro RTX 5000 | 36°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:46:55,946   INFO  Train:    6/50 ( 12%) [ 199/240 ( 83%)]  Loss: 1.943 (1.80)  LR: 8.275e-04  Time cost: 00:28/00:05 [03:34/25:12]  Acc_iter 1400        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:47:01,203   INFO  Train:    6/50 ( 12%) [ 239/240 (100%)]  Loss: 1.796 (1.80)  LR: 8.558e-04  Time cost: 00:33/00:00 [03:40/24:46]  Acc_iter 1440        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  12%|█▏        | 6/50 [03:40<26:01, 35.49s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:47:02,300   INFO  Train:    7/50 ( 14%) [   0/240 (  0%)]  Loss: 2.049 (2.05)  LR: 8.565e-04  Time cost: 00:00/02:54 [03:41/2:08:09]  Acc_iter 1441        Data time: 0.58(0.58)  Forward time: 0.14(0.14)  Batch time: 0.73(0.73)
+2024-05-19 01:47:03,514   INFO  Train:    7/50 ( 14%) [   9/240 (  4%)]  Loss: 1.723 (1.79)  LR: 8.629e-04  Time cost: 00:01/00:44 [03:42/34:08]  Acc_iter 1450        Data time: 0.00(0.06)  Forward time: 0.12(0.13)  Batch time: 0.13(0.19)
+2024-05-19 01:47:10,260   INFO  Train:    7/50 ( 14%) [  59/240 ( 25%)]  Loss: 1.681 (1.78)  LR: 8.992e-04  Time cost: 00:08/00:26 [03:49/25:20]  Acc_iter 1500        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:47:10,946   INFO  agq004              Sun May 19 01:47:10 2024  530.30.02
+[0] Quadro RTX 5000 | 36°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:47:17,659   INFO  Train:    7/50 ( 14%) [ 109/240 ( 45%)]  Loss: 1.900 (1.76)  LR: 9.364e-04  Time cost: 00:16/00:19 [03:56/25:28]  Acc_iter 1550        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:47:24,249   INFO  Train:    7/50 ( 14%) [ 159/240 ( 66%)]  Loss: 1.525 (1.75)  LR: 9.742e-04  Time cost: 00:22/00:11 [04:03/24:34]  Acc_iter 1600        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:47:30,860   INFO  Train:    7/50 ( 14%) [ 209/240 ( 87%)]  Loss: 1.803 (1.75)  LR: 1.013e-03  Time cost: 00:29/00:04 [04:09/24:03]  Acc_iter 1650        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:47:31,601   INFO  agq004              Sun May 19 01:47:31 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:47:35,527   INFO  Train:    7/50 ( 14%) [ 239/240 (100%)]  Loss: 1.950 (1.76)  LR: 1.036e-03  Time cost: 00:33/00:00 [04:14/24:20]  Acc_iter 1680        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+
+                                              [Aepochs:  14%|█▍        | 7/50 [04:14<25:11, 35.15s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:47:36,686   INFO  Train:    8/50 ( 16%) [   0/240 (  0%)]  Loss: 1.692 (1.69)  LR: 1.037e-03  Time cost: 00:00/02:41 [04:15/1:55:54]  Acc_iter 1681        Data time: 0.53(0.53)  Forward time: 0.15(0.15)  Batch time: 0.67(0.67)
+2024-05-19 01:47:39,260   INFO  Train:    8/50 ( 16%) [  19/240 (  8%)]  Loss: 1.437 (1.72)  LR: 1.052e-03  Time cost: 00:03/00:35 [04:18/27:52]  Acc_iter 1700        Data time: 0.00(0.03)  Forward time: 0.14(0.13)  Batch time: 0.14(0.16)
+2024-05-19 01:47:45,923   INFO  Train:    8/50 ( 16%) [  69/240 ( 29%)]  Loss: 1.676 (1.71)  LR: 1.092e-03  Time cost: 00:09/00:24 [04:24/24:11]  Acc_iter 1750        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:47:52,900   INFO  Train:    8/50 ( 16%) [ 119/240 ( 50%)]  Loss: 1.728 (1.72)  LR: 1.133e-03  Time cost: 00:16/00:17 [04:31/23:55]  Acc_iter 1800        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:47:53,648   INFO  agq004              Sun May 19 01:47:53 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:48:00,303   INFO  Train:    8/50 ( 16%) [ 169/240 ( 70%)]  Loss: 1.584 (1.71)  LR: 1.174e-03  Time cost: 00:24/00:10 [04:39/24:10]  Acc_iter 1850        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:48:07,274   INFO  Train:    8/50 ( 16%) [ 219/240 ( 91%)]  Loss: 1.784 (1.72)  LR: 1.215e-03  Time cost: 00:31/00:02 [04:46/23:55]  Acc_iter 1900        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:48:10,060   INFO  Train:    8/50 ( 16%) [ 239/240 (100%)]  Loss: 1.860 (1.72)  LR: 1.232e-03  Time cost: 00:34/00:00 [04:49/23:50]  Acc_iter 1920        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  16%|█▌        | 8/50 [04:49<24:26, 34.91s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:48:11,151   INFO  Train:    9/50 ( 18%) [   0/240 (  0%)]  Loss: 1.765 (1.76)  LR: 1.233e-03  Time cost: 00:00/02:53 [04:50/2:01:13]  Acc_iter 1921        Data time: 0.56(0.56)  Forward time: 0.16(0.16)  Batch time: 0.72(0.72)
+2024-05-19 01:48:15,077   INFO  Train:    9/50 ( 18%) [  29/240 ( 12%)]  Loss: 1.813 (1.72)  LR: 1.257e-03  Time cost: 00:04/00:32 [04:54/25:57]  Acc_iter 1950        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:48:15,830   INFO  agq004              Sun May 19 01:48:15 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:48:22,470   INFO  Train:    9/50 ( 18%) [  79/240 ( 33%)]  Loss: 1.582 (1.68)  LR: 1.300e-03  Time cost: 00:12/00:24 [05:01/25:05]  Acc_iter 2000        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:48:29,230   INFO  Train:    9/50 ( 18%) [ 129/240 ( 54%)]  Loss: 1.882 (1.70)  LR: 1.343e-03  Time cost: 00:18/00:16 [05:08/23:59]  Acc_iter 2050        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:48:35,881   INFO  Train:    9/50 ( 18%) [ 179/240 ( 75%)]  Loss: 2.018 (1.70)  LR: 1.386e-03  Time cost: 00:25/00:08 [05:14/23:19]  Acc_iter 2100        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:48:36,672   INFO  agq004              Sun May 19 01:48:36 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:48:43,416   INFO  Train:    9/50 ( 18%) [ 229/240 ( 95%)]  Loss: 1.938 (1.70)  LR: 1.429e-03  Time cost: 00:32/00:01 [05:22/23:32]  Acc_iter 2150        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:48:44,820   INFO  Train:    9/50 ( 18%) [ 239/240 (100%)]  Loss: 1.876 (1.70)  LR: 1.438e-03  Time cost: 00:34/00:00 [05:23/23:30]  Acc_iter 2160        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+
+                                              [Aepochs:  18%|█▊        | 9/50 [05:24<23:51, 34.91s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:48:46,021   INFO  Train:   10/50 ( 20%) [   0/240 (  0%)]  Loss: 1.664 (1.66)  LR: 1.439e-03  Time cost: 00:00/02:42 [05:25/1:51:22]  Acc_iter 2161        Data time: 0.54(0.54)  Forward time: 0.14(0.14)  Batch time: 0.68(0.68)
+2024-05-19 01:48:51,262   INFO  Train:   10/50 ( 20%) [  39/240 ( 16%)]  Loss: 1.788 (1.70)  LR: 1.473e-03  Time cost: 00:05/00:29 [05:30/24:10]  Acc_iter 2200        Data time: 0.00(0.02)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:48:58,458   INFO  Train:   10/50 ( 20%) [  89/240 ( 37%)]  Loss: 1.694 (1.68)  LR: 1.517e-03  Time cost: 00:13/00:22 [05:37/23:41]  Acc_iter 2250        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:48:59,253   INFO  agq004              Sun May 19 01:48:59 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:49:05,936   INFO  Train:   10/50 ( 20%) [ 139/240 ( 58%)]  Loss: 1.444 (1.67)  LR: 1.561e-03  Time cost: 00:20/00:14 [05:44/23:47]  Acc_iter 2300        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:49:12,734   INFO  Train:   10/50 ( 20%) [ 189/240 ( 79%)]  Loss: 1.853 (1.67)  LR: 1.605e-03  Time cost: 00:27/00:07 [05:51/23:11]  Acc_iter 2350        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:49:19,598   INFO  Train:   10/50 ( 20%) [ 239/240 (100%)]  Loss: 1.589 (1.68)  LR: 1.649e-03  Time cost: 00:34/00:00 [05:58/22:50]  Acc_iter 2400        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+2024-05-19 01:49:20,229   INFO  agq004              Sun May 19 01:49:20 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+
+                                              [Aepochs:  20%|██        | 10/50 [05:59<23:24, 35.12s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:49:21,599   INFO  Train:   11/50 ( 22%) [   0/240 (  0%)]  Loss: 1.498 (1.50)  LR: 1.650e-03  Time cost: 00:00/02:41 [06:00/1:47:50]  Acc_iter 2401        Data time: 0.53(0.53)  Forward time: 0.15(0.15)  Batch time: 0.67(0.67)
+2024-05-19 01:49:28,111   INFO  Train:   11/50 ( 22%) [  49/240 ( 20%)]  Loss: 1.504 (1.66)  LR: 1.693e-03  Time cost: 00:07/00:27 [06:07/22:52]  Acc_iter 2450        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:49:34,819   INFO  Train:   11/50 ( 22%) [  99/240 ( 41%)]  Loss: 1.607 (1.66)  LR: 1.737e-03  Time cost: 00:13/00:19 [06:13/22:00]  Acc_iter 2500        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:49:41,467   INFO  Train:   11/50 ( 22%) [ 149/240 ( 62%)]  Loss: 1.668 (1.65)  LR: 1.781e-03  Time cost: 00:20/00:12 [06:20/21:34]  Acc_iter 2550        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:49:42,202   INFO  agq004              Sun May 19 01:49:42 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:49:48,778   INFO  Train:   11/50 ( 22%) [ 199/240 ( 83%)]  Loss: 1.859 (1.66)  LR: 1.825e-03  Time cost: 00:27/00:05 [06:27/21:49]  Acc_iter 2600        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:49:54,047   INFO  Train:   11/50 ( 22%) [ 239/240 (100%)]  Loss: 1.705 (1.66)  LR: 1.860e-03  Time cost: 00:33/00:00 [06:33/21:31]  Acc_iter 2640        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  22%|██▏       | 11/50 [06:33<22:31, 34.65s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:49:55,208   INFO  Train:   12/50 ( 24%) [   0/240 (  0%)]  Loss: 1.512 (1.51)  LR: 1.861e-03  Time cost: 00:00/02:48 [06:34/1:49:49]  Acc_iter 2641        Data time: 0.56(0.56)  Forward time: 0.14(0.14)  Batch time: 0.70(0.70)
+2024-05-19 01:49:56,482   INFO  Train:   12/50 ( 24%) [   9/240 (  4%)]  Loss: 1.687 (1.64)  LR: 1.869e-03  Time cost: 00:01/00:45 [06:35/30:49]  Acc_iter 2650        Data time: 0.00(0.07)  Forward time: 0.13(0.13)  Batch time: 0.13(0.20)
+2024-05-19 01:50:03,220   INFO  Train:   12/50 ( 24%) [  59/240 ( 25%)]  Loss: 1.746 (1.66)  LR: 1.913e-03  Time cost: 00:08/00:26 [06:42/22:31]  Acc_iter 2700        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:50:03,988   INFO  agq004              Sun May 19 01:50:03 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:50:10,653   INFO  Train:   12/50 ( 24%) [ 109/240 ( 45%)]  Loss: 1.269 (1.63)  LR: 1.956e-03  Time cost: 00:16/00:19 [06:49/22:38]  Acc_iter 2750        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.15)
+2024-05-19 01:50:17,292   INFO  Train:   12/50 ( 24%) [ 159/240 ( 66%)]  Loss: 1.703 (1.61)  LR: 1.999e-03  Time cost: 00:22/00:11 [06:56/21:50]  Acc_iter 2800        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:50:24,239   INFO  Train:   12/50 ( 24%) [ 209/240 ( 87%)]  Loss: 1.873 (1.60)  LR: 2.041e-03  Time cost: 00:29/00:04 [07:03/21:35]  Acc_iter 2850        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:50:25,044   INFO  agq004              Sun May 19 01:50:25 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:50:28,968   INFO  Train:   12/50 ( 24%) [ 239/240 (100%)]  Loss: 1.430 (1.60)  LR: 2.066e-03  Time cost: 00:34/00:00 [07:07/21:49]  Acc_iter 2880        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.14)
+
+                                              [Aepochs:  24%|██▍       | 12/50 [07:08<21:59, 34.71s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:50:30,114   INFO  Train:   13/50 ( 26%) [   0/240 (  0%)]  Loss: 1.642 (1.64)  LR: 2.067e-03  Time cost: 00:00/02:58 [07:09/1:53:20]  Acc_iter 2881        Data time: 0.60(0.60)  Forward time: 0.15(0.15)  Batch time: 0.75(0.75)
+2024-05-19 01:50:32,667   INFO  Train:   13/50 ( 26%) [  19/240 (  8%)]  Loss: 1.567 (1.62)  LR: 2.083e-03  Time cost: 00:03/00:36 [07:11/25:01]  Acc_iter 2900        Data time: 0.00(0.03)  Forward time: 0.15(0.13)  Batch time: 0.15(0.16)
+2024-05-19 01:50:39,351   INFO  Train:   13/50 ( 26%) [  69/240 ( 29%)]  Loss: 1.581 (1.62)  LR: 2.125e-03  Time cost: 00:09/00:24 [07:18/21:30]  Acc_iter 2950        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:50:46,081   INFO  Train:   13/50 ( 26%) [ 119/240 ( 50%)]  Loss: 1.632 (1.62)  LR: 2.166e-03  Time cost: 00:16/00:16 [07:25/20:53]  Acc_iter 3000        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:50:46,854   INFO  agq004              Sun May 19 01:50:46 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:50:53,497   INFO  Train:   13/50 ( 26%) [ 169/240 ( 70%)]  Loss: 1.492 (1.62)  LR: 2.206e-03  Time cost: 00:24/00:10 [07:32/21:10]  Acc_iter 3050        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:51:00,528   INFO  Train:   13/50 ( 26%) [ 219/240 ( 91%)]  Loss: 1.593 (1.62)  LR: 2.246e-03  Time cost: 00:31/00:02 [07:39/21:00]  Acc_iter 3100        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:51:03,250   INFO  Train:   13/50 ( 26%) [ 239/240 (100%)]  Loss: 1.872 (1.62)  LR: 2.262e-03  Time cost: 00:33/00:00 [07:42/20:53]  Acc_iter 3120        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  26%|██▌       | 13/50 [07:42<21:20, 34.61s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:51:04,384   INFO  Train:   14/50 ( 28%) [   0/240 (  0%)]  Loss: 1.476 (1.48)  LR: 2.263e-03  Time cost: 00:00/02:34 [07:43/1:35:15]  Acc_iter 3121        Data time: 0.49(0.49)  Forward time: 0.15(0.15)  Batch time: 0.64(0.64)
+2024-05-19 01:51:08,550   INFO  Train:   14/50 ( 28%) [  29/240 ( 12%)]  Loss: 1.377 (1.60)  LR: 2.286e-03  Time cost: 00:04/00:33 [07:47/23:38]  Acc_iter 3150        Data time: 0.00(0.03)  Forward time: 0.13(0.13)  Batch time: 0.13(0.16)
+2024-05-19 01:51:09,276   INFO  agq004              Sun May 19 01:51:09 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:51:16,442   INFO  Train:   14/50 ( 28%) [  79/240 ( 33%)]  Loss: 1.498 (1.59)  LR: 2.324e-03  Time cost: 00:12/00:25 [07:55/23:17]  Acc_iter 3200        Data time: 0.15(0.03)  Forward time: 0.13(0.13)  Batch time: 0.27(0.16)
+2024-05-19 01:51:24,649   INFO  Train:   14/50 ( 28%) [ 129/240 ( 54%)]  Loss: 1.478 (1.60)  LR: 2.362e-03  Time cost: 00:20/00:17 [08:03/23:27]  Acc_iter 3250        Data time: 0.00(0.03)  Forward time: 0.14(0.13)  Batch time: 0.14(0.16)
+2024-05-19 01:51:32,549   INFO  Train:   14/50 ( 28%) [ 179/240 ( 75%)]  Loss: 1.330 (1.60)  LR: 2.399e-03  Time cost: 00:28/00:09 [08:11/23:12]  Acc_iter 3300        Data time: 0.07(0.03)  Forward time: 0.14(0.13)  Batch time: 0.21(0.16)
+2024-05-19 01:51:33,701   INFO  agq004              Sun May 19 01:51:33 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:51:40,569   INFO  Train:   14/50 ( 28%) [ 229/240 ( 95%)]  Loss: 1.644 (1.59)  LR: 2.436e-03  Time cost: 00:36/00:01 [08:19/23:05]  Acc_iter 3350        Data time: 0.00(0.03)  Forward time: 0.12(0.13)  Batch time: 0.13(0.16)
+2024-05-19 01:51:42,210   INFO  Train:   14/50 ( 28%) [ 239/240 (100%)]  Loss: 1.489 (1.59)  LR: 2.443e-03  Time cost: 00:38/00:00 [08:21/23:05]  Acc_iter 3360        Data time: 0.00(0.03)  Forward time: 0.12(0.13)  Batch time: 0.12(0.16)
+
+                                              [Aepochs:  28%|██▊       | 14/50 [08:21<21:32, 35.89s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:51:43,371   INFO  Train:   15/50 ( 30%) [   0/240 (  0%)]  Loss: 1.680 (1.68)  LR: 2.444e-03  Time cost: 00:00/03:04 [08:22/1:50:28]  Acc_iter 3361        Data time: 0.61(0.61)  Forward time: 0.16(0.16)  Batch time: 0.77(0.77)
+2024-05-19 01:51:48,618   INFO  Train:   15/50 ( 30%) [  39/240 ( 16%)]  Loss: 1.503 (1.54)  LR: 2.471e-03  Time cost: 00:06/00:30 [08:27/21:33]  Acc_iter 3400        Data time: 0.00(0.02)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:51:55,597   INFO  Train:   15/50 ( 30%) [  89/240 ( 37%)]  Loss: 1.549 (1.53)  LR: 2.506e-03  Time cost: 00:12/00:21 [08:34/20:34]  Acc_iter 3450        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:51:56,367   INFO  agq004              Sun May 19 01:51:56 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:52:02,997   INFO  Train:   15/50 ( 30%) [ 139/240 ( 58%)]  Loss: 1.236 (1.53)  LR: 2.539e-03  Time cost: 00:20/00:14 [08:42/20:38]  Acc_iter 3500        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:52:09,657   INFO  Train:   15/50 ( 30%) [ 189/240 ( 79%)]  Loss: 1.825 (1.53)  LR: 2.572e-03  Time cost: 00:27/00:07 [08:48/20:03]  Acc_iter 3550        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:52:16,476   INFO  Train:   15/50 ( 30%) [ 239/240 (100%)]  Loss: 1.717 (1.55)  LR: 2.604e-03  Time cost: 00:33/00:00 [08:55/19:45]  Acc_iter 3600        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+2024-05-19 01:52:17,104   INFO  agq004              Sun May 19 01:52:17 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+
+                                              [Aepochs:  30%|███       | 15/50 [08:56<20:46, 35.60s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:52:18,274   INFO  Train:   16/50 ( 32%) [   0/240 (  0%)]  Loss: 1.451 (1.45)  LR: 2.605e-03  Time cost: 00:00/02:57 [08:57/1:43:47]  Acc_iter 3601        Data time: 0.60(0.60)  Forward time: 0.14(0.14)  Batch time: 0.74(0.74)
+2024-05-19 01:52:24,799   INFO  Train:   16/50 ( 32%) [  49/240 ( 20%)]  Loss: 1.491 (1.55)  LR: 2.635e-03  Time cost: 00:07/00:27 [09:03/20:13]  Acc_iter 3650        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:52:31,500   INFO  Train:   16/50 ( 32%) [  99/240 ( 41%)]  Loss: 1.524 (1.53)  LR: 2.664e-03  Time cost: 00:13/00:19 [09:10/19:19]  Acc_iter 3700        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:52:38,140   INFO  Train:   16/50 ( 32%) [ 149/240 ( 62%)]  Loss: 1.430 (1.53)  LR: 2.693e-03  Time cost: 00:20/00:12 [09:17/18:53]  Acc_iter 3750        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:52:38,895   INFO  agq004              Sun May 19 01:52:38 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:52:45,566   INFO  Train:   16/50 ( 32%) [ 199/240 ( 83%)]  Loss: 1.530 (1.53)  LR: 2.720e-03  Time cost: 00:28/00:05 [09:24/19:09]  Acc_iter 3800        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:52:50,847   INFO  Train:   16/50 ( 32%) [ 239/240 (100%)]  Loss: 1.549 (1.52)  LR: 2.742e-03  Time cost: 00:33/00:00 [09:29/18:52]  Acc_iter 3840        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  32%|███▏      | 16/50 [09:30<19:51, 35.05s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:52:52,010   INFO  Train:   17/50 ( 34%) [   0/240 (  0%)]  Loss: 1.617 (1.62)  LR: 2.742e-03  Time cost: 00:00/02:50 [09:31/1:36:28]  Acc_iter 3841        Data time: 0.56(0.56)  Forward time: 0.15(0.15)  Batch time: 0.71(0.71)
+2024-05-19 01:52:53,204   INFO  Train:   17/50 ( 34%) [   9/240 (  4%)]  Loss: 1.499 (1.61)  LR: 2.747e-03  Time cost: 00:01/00:43 [09:32/25:51]  Acc_iter 3850        Data time: 0.00(0.06)  Forward time: 0.13(0.13)  Batch time: 0.13(0.19)
+2024-05-19 01:52:59,866   INFO  Train:   17/50 ( 34%) [  59/240 ( 25%)]  Loss: 1.343 (1.51)  LR: 2.772e-03  Time cost: 00:08/00:25 [09:38/19:16]  Acc_iter 3900        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.15(0.14)
+2024-05-19 01:53:00,624   INFO  agq004              Sun May 19 01:53:00 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:53:07,295   INFO  Train:   17/50 ( 34%) [ 109/240 ( 45%)]  Loss: 1.398 (1.53)  LR: 2.796e-03  Time cost: 00:15/00:19 [09:46/19:30]  Acc_iter 3950        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:53:14,009   INFO  Train:   17/50 ( 34%) [ 159/240 ( 66%)]  Loss: 1.109 (1.53)  LR: 2.819e-03  Time cost: 00:22/00:11 [09:53/18:55]  Acc_iter 4000        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:53:20,647   INFO  Train:   17/50 ( 34%) [ 209/240 ( 87%)]  Loss: 1.748 (1.52)  LR: 2.840e-03  Time cost: 00:29/00:04 [09:59/18:31]  Acc_iter 4050        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:53:21,482   INFO  agq004              Sun May 19 01:53:21 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:53:25,407   INFO  Train:   17/50 ( 34%) [ 239/240 (100%)]  Loss: 1.290 (1.51)  LR: 2.852e-03  Time cost: 00:34/00:00 [10:04/18:45]  Acc_iter 4080        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  34%|███▍      | 17/50 [10:04<19:11, 34.90s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:53:26,544   INFO  Train:   18/50 ( 36%) [   0/240 (  0%)]  Loss: 1.155 (1.15)  LR: 2.853e-03  Time cost: 00:00/02:44 [10:05/1:30:34]  Acc_iter 4081        Data time: 0.53(0.53)  Forward time: 0.15(0.15)  Batch time: 0.69(0.69)
+2024-05-19 01:53:29,086   INFO  Train:   18/50 ( 36%) [  19/240 (  8%)]  Loss: 1.560 (1.45)  LR: 2.860e-03  Time cost: 00:03/00:35 [10:08/21:15]  Acc_iter 4100        Data time: 0.00(0.03)  Forward time: 0.13(0.13)  Batch time: 0.14(0.16)
+2024-05-19 01:53:35,787   INFO  Train:   18/50 ( 36%) [  69/240 ( 29%)]  Loss: 1.536 (1.48)  LR: 2.879e-03  Time cost: 00:09/00:24 [10:14/18:33]  Acc_iter 4150        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:53:42,915   INFO  Train:   18/50 ( 36%) [ 119/240 ( 50%)]  Loss: 1.479 (1.47)  LR: 2.897e-03  Time cost: 00:17/00:17 [10:21/18:28]  Acc_iter 4200        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:53:43,715   INFO  agq004              Sun May 19 01:53:43 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:53:50,360   INFO  Train:   18/50 ( 36%) [ 169/240 ( 70%)]  Loss: 1.640 (1.47)  LR: 2.913e-03  Time cost: 00:24/00:10 [10:29/18:37]  Acc_iter 4250        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:53:57,274   INFO  Train:   18/50 ( 36%) [ 219/240 ( 91%)]  Loss: 1.679 (1.48)  LR: 2.928e-03  Time cost: 00:31/00:02 [10:36/18:19]  Acc_iter 4300        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:53:59,920   INFO  Train:   18/50 ( 36%) [ 239/240 (100%)]  Loss: 1.544 (1.48)  LR: 2.934e-03  Time cost: 00:34/00:00 [10:38/18:10]  Acc_iter 4320        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  36%|███▌      | 18/50 [10:39<18:32, 34.78s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:54:01,057   INFO  Train:   19/50 ( 38%) [   0/240 (  0%)]  Loss: 1.272 (1.27)  LR: 2.934e-03  Time cost: 00:00/02:48 [10:40/1:29:40]  Acc_iter 4321        Data time: 0.55(0.55)  Forward time: 0.15(0.15)  Batch time: 0.70(0.70)
+2024-05-19 01:54:04,968   INFO  Train:   19/50 ( 38%) [  29/240 ( 12%)]  Loss: 1.483 (1.50)  LR: 2.942e-03  Time cost: 00:04/00:32 [10:43/19:36]  Acc_iter 4350        Data time: 0.00(0.02)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:54:05,661   INFO  agq004              Sun May 19 01:54:05 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:54:12,284   INFO  Train:   19/50 ( 38%) [  79/240 ( 33%)]  Loss: 1.321 (1.50)  LR: 2.954e-03  Time cost: 00:11/00:24 [10:51/18:53]  Acc_iter 4400        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:54:18,960   INFO  Train:   19/50 ( 38%) [ 129/240 ( 54%)]  Loss: 1.686 (1.49)  LR: 2.965e-03  Time cost: 00:18/00:15 [10:57/18:00]  Acc_iter 4450        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:54:25,784   INFO  Train:   19/50 ( 38%) [ 179/240 ( 75%)]  Loss: 1.495 (1.49)  LR: 2.974e-03  Time cost: 00:25/00:08 [11:04/17:39]  Acc_iter 4500        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:54:26,587   INFO  agq004              Sun May 19 01:54:26 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:54:33,402   INFO  Train:   19/50 ( 38%) [ 229/240 ( 95%)]  Loss: 1.609 (1.49)  LR: 2.982e-03  Time cost: 00:33/00:01 [11:12/17:50]  Acc_iter 4550        Data time: 0.11(0.01)  Forward time: 0.13(0.13)  Batch time: 0.24(0.14)
+2024-05-19 01:54:34,704   INFO  Train:   19/50 ( 38%) [ 239/240 (100%)]  Loss: 1.342 (1.49)  LR: 2.983e-03  Time cost: 00:34/00:00 [11:13/17:44]  Acc_iter 4560        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  38%|███▊      | 19/50 [11:14<17:58, 34.80s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:54:35,850   INFO  Train:   20/50 ( 40%) [   0/240 (  0%)]  Loss: 1.744 (1.74)  LR: 2.983e-03  Time cost: 00:00/02:36 [11:14/1:20:51]  Acc_iter 4561        Data time: 0.51(0.51)  Forward time: 0.14(0.14)  Batch time: 0.65(0.65)
+2024-05-19 01:54:41,062   INFO  Train:   20/50 ( 40%) [  39/240 ( 16%)]  Loss: 1.349 (1.49)  LR: 2.988e-03  Time cost: 00:05/00:29 [11:20/18:05]  Acc_iter 4600        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:54:47,897   INFO  Train:   20/50 ( 40%) [  89/240 ( 37%)]  Loss: 1.387 (1.47)  LR: 2.993e-03  Time cost: 00:12/00:21 [11:26/17:17]  Acc_iter 4650        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:54:48,730   INFO  agq004              Sun May 19 01:54:48 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:54:55,705   INFO  Train:   20/50 ( 40%) [ 139/240 ( 58%)]  Loss: 1.454 (1.46)  LR: 2.997e-03  Time cost: 00:20/00:14 [11:34/17:49]  Acc_iter 4700        Data time: 0.04(0.02)  Forward time: 0.13(0.13)  Batch time: 0.17(0.15)
+2024-05-19 01:55:03,368   INFO  Train:   20/50 ( 40%) [ 189/240 ( 79%)]  Loss: 1.476 (1.45)  LR: 2.999e-03  Time cost: 00:28/00:07 [11:42/17:55]  Acc_iter 4750        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:55:10,634   INFO  Train:   20/50 ( 40%) [ 239/240 (100%)]  Loss: 1.468 (1.45)  LR: 3.000e-03  Time cost: 00:35/00:00 [11:49/17:43]  Acc_iter 4800        Data time: 0.00(0.02)  Forward time: 0.12(0.13)  Batch time: 0.12(0.15)
+2024-05-19 01:55:11,257   INFO  agq004              Sun May 19 01:55:11 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+
+                                              [Aepochs:  40%|████      | 20/50 [11:50<17:39, 35.32s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:55:12,561   INFO  Train:   21/50 ( 42%) [   0/240 (  0%)]  Loss: 1.350 (1.35)  LR: 3.000e-03  Time cost: 00:00/03:15 [11:51/1:37:59]  Acc_iter 4801        Data time: 0.67(0.67)  Forward time: 0.15(0.15)  Batch time: 0.82(0.82)
+2024-05-19 01:55:19,472   INFO  Train:   21/50 ( 42%) [  49/240 ( 20%)]  Loss: 1.461 (1.46)  LR: 3.000e-03  Time cost: 00:07/00:29 [11:58/18:25]  Acc_iter 4850        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:55:27,001   INFO  Train:   21/50 ( 42%) [  99/240 ( 41%)]  Loss: 1.396 (1.46)  LR: 2.999e-03  Time cost: 00:15/00:21 [12:06/18:03]  Acc_iter 4900        Data time: 0.00(0.02)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 01:55:34,006   INFO  Train:   21/50 ( 42%) [ 149/240 ( 62%)]  Loss: 1.314 (1.45)  LR: 2.997e-03  Time cost: 00:22/00:13 [12:13/17:26]  Acc_iter 4950        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:55:34,716   INFO  agq004              Sun May 19 01:55:34 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:55:41,420   INFO  Train:   21/50 ( 42%) [ 199/240 ( 83%)]  Loss: 1.254 (1.44)  LR: 2.994e-03  Time cost: 00:29/00:06 [12:20/17:18]  Acc_iter 5000        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:55:46,919   INFO  Train:   21/50 ( 42%) [ 239/240 (100%)]  Loss: 1.252 (1.44)  LR: 2.992e-03  Time cost: 00:35/00:00 [12:25/17:00]  Acc_iter 5040        Data time: 0.00(0.02)  Forward time: 0.12(0.13)  Batch time: 0.12(0.15)
+
+                                              [Aepochs:  42%|████▏     | 21/50 [12:26<17:08, 35.46s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:55:48,204   INFO  Train:   22/50 ( 44%) [   0/240 (  0%)]  Loss: 1.495 (1.49)  LR: 2.992e-03  Time cost: 00:00/02:42 [12:27/1:18:28]  Acc_iter 5041        Data time: 0.54(0.54)  Forward time: 0.14(0.14)  Batch time: 0.68(0.68)
+2024-05-19 01:55:49,420   INFO  Train:   22/50 ( 44%) [   9/240 (  4%)]  Loss: 1.610 (1.46)  LR: 2.991e-03  Time cost: 00:01/00:43 [12:28/21:55]  Acc_iter 5050        Data time: 0.00(0.06)  Forward time: 0.13(0.13)  Batch time: 0.13(0.19)
+2024-05-19 01:55:56,072   INFO  Train:   22/50 ( 44%) [  59/240 ( 25%)]  Loss: 1.354 (1.42)  LR: 2.987e-03  Time cost: 00:08/00:25 [12:35/16:22]  Acc_iter 5100        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:55:56,907   INFO  agq004              Sun May 19 01:55:56 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:56:03,525   INFO  Train:   22/50 ( 44%) [ 109/240 ( 45%)]  Loss: 1.400 (1.42)  LR: 2.983e-03  Time cost: 00:15/00:19 [12:42/16:36]  Acc_iter 5150        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:56:10,498   INFO  Train:   22/50 ( 44%) [ 159/240 ( 66%)]  Loss: 1.379 (1.42)  LR: 2.977e-03  Time cost: 00:22/00:11 [12:49/16:16]  Acc_iter 5200        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:56:17,457   INFO  Train:   22/50 ( 44%) [ 209/240 ( 87%)]  Loss: 1.373 (1.40)  LR: 2.971e-03  Time cost: 00:29/00:04 [12:56/16:02]  Acc_iter 5250        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:56:18,215   INFO  agq004              Sun May 19 01:56:18 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:56:22,180   INFO  Train:   22/50 ( 44%) [ 239/240 (100%)]  Loss: 1.187 (1.40)  LR: 2.967e-03  Time cost: 00:34/00:00 [13:01/16:10]  Acc_iter 5280        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  44%|████▍     | 22/50 [13:01<16:30, 35.37s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:56:23,395   INFO  Train:   23/50 ( 46%) [   0/240 (  0%)]  Loss: 1.615 (1.62)  LR: 2.967e-03  Time cost: 00:00/02:51 [13:02/1:19:54]  Acc_iter 5281        Data time: 0.57(0.57)  Forward time: 0.14(0.14)  Batch time: 0.71(0.71)
+2024-05-19 01:56:25,938   INFO  Train:   23/50 ( 46%) [  19/240 (  8%)]  Loss: 1.562 (1.37)  LR: 2.965e-03  Time cost: 00:03/00:35 [13:04/18:10]  Acc_iter 5300        Data time: 0.00(0.03)  Forward time: 0.13(0.13)  Batch time: 0.13(0.16)
+2024-05-19 01:56:32,699   INFO  Train:   23/50 ( 46%) [  69/240 ( 29%)]  Loss: 1.474 (1.44)  LR: 2.957e-03  Time cost: 00:10/00:24 [13:11/15:51]  Acc_iter 5350        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:56:39,482   INFO  Train:   23/50 ( 46%) [ 119/240 ( 50%)]  Loss: 1.399 (1.42)  LR: 2.949e-03  Time cost: 00:16/00:16 [13:18/15:24]  Acc_iter 5400        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:56:40,292   INFO  agq004              Sun May 19 01:56:40 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:56:46,915   INFO  Train:   23/50 ( 46%) [ 169/240 ( 70%)]  Loss: 1.139 (1.42)  LR: 2.940e-03  Time cost: 00:24/00:10 [13:25/15:33]  Acc_iter 5450        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:56:53,593   INFO  Train:   23/50 ( 46%) [ 219/240 ( 91%)]  Loss: 1.374 (1.41)  LR: 2.931e-03  Time cost: 00:30/00:02 [13:32/15:13]  Acc_iter 5500        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:56:56,235   INFO  Train:   23/50 ( 46%) [ 239/240 (100%)]  Loss: 1.256 (1.42)  LR: 2.927e-03  Time cost: 00:33/00:00 [13:35/15:06]  Acc_iter 5520        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  46%|████▌     | 23/50 [13:35<15:45, 35.00s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:56:57,504   INFO  Train:   24/50 ( 48%) [   0/240 (  0%)]  Loss: 1.455 (1.45)  LR: 2.927e-03  Time cost: 00:00/02:44 [13:36/1:13:51]  Acc_iter 5521        Data time: 0.54(0.54)  Forward time: 0.15(0.15)  Batch time: 0.68(0.68)
+2024-05-19 01:57:01,427   INFO  Train:   24/50 ( 48%) [  29/240 ( 12%)]  Loss: 1.162 (1.33)  LR: 2.921e-03  Time cost: 00:04/00:32 [13:40/16:30]  Acc_iter 5550        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:57:02,228   INFO  agq004              Sun May 19 01:57:02 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:57:08,864   INFO  Train:   24/50 ( 48%) [  79/240 ( 33%)]  Loss: 1.232 (1.38)  LR: 2.910e-03  Time cost: 00:12/00:24 [13:47/16:03]  Acc_iter 5600        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:57:15,722   INFO  Train:   24/50 ( 48%) [ 129/240 ( 54%)]  Loss: 1.525 (1.38)  LR: 2.898e-03  Time cost: 00:18/00:16 [13:54/15:23]  Acc_iter 5650        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:57:22,621   INFO  Train:   24/50 ( 48%) [ 179/240 ( 75%)]  Loss: 1.312 (1.38)  LR: 2.886e-03  Time cost: 00:25/00:08 [14:01/15:03]  Acc_iter 5700        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:57:23,389   INFO  agq004              Sun May 19 01:57:23 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:57:30,091   INFO  Train:   24/50 ( 48%) [ 229/240 ( 95%)]  Loss: 1.215 (1.38)  LR: 2.873e-03  Time cost: 00:33/00:01 [14:09/15:04]  Acc_iter 5750        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:57:31,358   INFO  Train:   24/50 ( 48%) [ 239/240 (100%)]  Loss: 1.457 (1.38)  LR: 2.871e-03  Time cost: 00:34/00:00 [14:10/14:58]  Acc_iter 5760        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  48%|████▊     | 24/50 [14:10<15:11, 35.08s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:57:32,734   INFO  Train:   25/50 ( 50%) [   0/240 (  0%)]  Loss: 1.418 (1.42)  LR: 2.870e-03  Time cost: 00:00/02:38 [14:11/1:08:40]  Acc_iter 5761        Data time: 0.50(0.50)  Forward time: 0.16(0.16)  Batch time: 0.66(0.66)
+2024-05-19 01:57:37,959   INFO  Train:   25/50 ( 50%) [  39/240 ( 16%)]  Loss: 1.370 (1.42)  LR: 2.860e-03  Time cost: 00:05/00:29 [14:16/15:12]  Acc_iter 5800        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:57:44,621   INFO  Train:   25/50 ( 50%) [  89/240 ( 37%)]  Loss: 1.381 (1.39)  LR: 2.846e-03  Time cost: 00:12/00:21 [14:23/14:17]  Acc_iter 5850        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:57:45,322   INFO  agq004              Sun May 19 01:57:45 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:57:51,984   INFO  Train:   25/50 ( 50%) [ 139/240 ( 58%)]  Loss: 1.397 (1.38)  LR: 2.831e-03  Time cost: 00:19/00:14 [14:31/14:27]  Acc_iter 5900        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:57:58,698   INFO  Train:   25/50 ( 50%) [ 189/240 ( 79%)]  Loss: 1.543 (1.38)  LR: 2.815e-03  Time cost: 00:26/00:07 [14:37/14:07]  Acc_iter 5950        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:58:05,508   INFO  Train:   25/50 ( 50%) [ 239/240 (100%)]  Loss: 1.299 (1.38)  LR: 2.799e-03  Time cost: 00:33/00:00 [14:44/13:55]  Acc_iter 6000        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+2024-05-19 01:58:06,148   INFO  agq004              Sun May 19 01:58:06 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+
+                                              [Aepochs:  50%|█████     | 25/50 [14:45<14:33, 34.93s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:58:07,410   INFO  Train:   26/50 ( 52%) [   0/240 (  0%)]  Loss: 1.277 (1.28)  LR: 2.799e-03  Time cost: 00:00/03:02 [14:46/1:16:01]  Acc_iter 6001        Data time: 0.62(0.62)  Forward time: 0.14(0.14)  Batch time: 0.76(0.76)
+2024-05-19 01:58:14,288   INFO  Train:   26/50 ( 52%) [  49/240 ( 20%)]  Loss: 1.214 (1.38)  LR: 2.783e-03  Time cost: 00:07/00:29 [14:53/15:09]  Acc_iter 6050        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:58:21,054   INFO  Train:   26/50 ( 52%) [  99/240 ( 41%)]  Loss: 1.385 (1.36)  LR: 2.765e-03  Time cost: 00:14/00:20 [15:00/14:10]  Acc_iter 6100        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:58:28,536   INFO  Train:   26/50 ( 52%) [ 149/240 ( 62%)]  Loss: 1.522 (1.35)  LR: 2.748e-03  Time cost: 00:21/00:13 [15:07/14:13]  Acc_iter 6150        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:58:29,267   INFO  agq004              Sun May 19 01:58:29 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:58:35,918   INFO  Train:   26/50 ( 52%) [ 199/240 ( 83%)]  Loss: 1.189 (1.36)  LR: 2.729e-03  Time cost: 00:29/00:05 [15:14/14:08]  Acc_iter 6200        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:58:41,367   INFO  Train:   26/50 ( 52%) [ 239/240 (100%)]  Loss: 1.257 (1.36)  LR: 2.714e-03  Time cost: 00:34/00:00 [15:20/13:53]  Acc_iter 6240        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  52%|█████▏    | 26/50 [15:20<14:00, 35.01s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:58:42,521   INFO  Train:   27/50 ( 54%) [   0/240 (  0%)]  Loss: 1.196 (1.20)  LR: 2.714e-03  Time cost: 00:00/02:40 [15:21/1:04:04]  Acc_iter 6241        Data time: 0.52(0.52)  Forward time: 0.15(0.15)  Batch time: 0.67(0.67)
+2024-05-19 01:58:43,736   INFO  Train:   27/50 ( 54%) [   9/240 (  4%)]  Loss: 1.181 (1.30)  LR: 2.710e-03  Time cost: 00:01/00:43 [15:22/18:02]  Acc_iter 6250        Data time: 0.00(0.05)  Forward time: 0.13(0.13)  Batch time: 0.13(0.19)
+2024-05-19 01:58:50,505   INFO  Train:   27/50 ( 54%) [  59/240 ( 25%)]  Loss: 1.313 (1.35)  LR: 2.690e-03  Time cost: 00:08/00:26 [15:29/13:42]  Acc_iter 6300        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:58:51,214   INFO  agq004              Sun May 19 01:58:51 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:58:57,836   INFO  Train:   27/50 ( 54%) [ 109/240 ( 45%)]  Loss: 1.373 (1.34)  LR: 2.670e-03  Time cost: 00:15/00:19 [15:36/13:41]  Acc_iter 6350        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:59:04,518   INFO  Train:   27/50 ( 54%) [ 159/240 ( 66%)]  Loss: 1.487 (1.35)  LR: 2.649e-03  Time cost: 00:22/00:11 [15:43/13:13]  Acc_iter 6400        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+2024-05-19 01:59:11,231   INFO  Train:   27/50 ( 54%) [ 209/240 ( 87%)]  Loss: 1.395 (1.34)  LR: 2.628e-03  Time cost: 00:29/00:04 [15:50/12:56]  Acc_iter 6450        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:59:11,979   INFO  agq004              Sun May 19 01:59:11 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:59:15,911   INFO  Train:   27/50 ( 54%) [ 239/240 (100%)]  Loss: 1.297 (1.34)  LR: 2.615e-03  Time cost: 00:34/00:00 [15:54/13:03]  Acc_iter 6480        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  54%|█████▍    | 27/50 [15:55<13:22, 34.87s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:59:17,210   INFO  Train:   28/50 ( 56%) [   0/240 (  0%)]  Loss: 1.135 (1.13)  LR: 2.615e-03  Time cost: 00:00/03:12 [15:56/1:13:57]  Acc_iter 6481        Data time: 0.67(0.67)  Forward time: 0.14(0.14)  Batch time: 0.80(0.80)
+2024-05-19 01:59:19,757   INFO  Train:   28/50 ( 56%) [  19/240 (  8%)]  Loss: 1.222 (1.28)  LR: 2.606e-03  Time cost: 00:03/00:37 [15:58/15:21]  Acc_iter 6500        Data time: 0.00(0.03)  Forward time: 0.13(0.13)  Batch time: 0.13(0.17)
+2024-05-19 01:59:26,359   INFO  Train:   28/50 ( 56%) [  69/240 ( 29%)]  Loss: 1.450 (1.31)  LR: 2.584e-03  Time cost: 00:09/00:24 [16:05/12:55]  Acc_iter 6550        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:59:33,037   INFO  Train:   28/50 ( 56%) [ 119/240 ( 50%)]  Loss: 1.299 (1.32)  LR: 2.561e-03  Time cost: 00:16/00:16 [16:12/12:28]  Acc_iter 6600        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 01:59:33,723   INFO  agq004              Sun May 19 01:59:33 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 01:59:40,359   INFO  Train:   28/50 ( 56%) [ 169/240 ( 70%)]  Loss: 1.498 (1.33)  LR: 2.538e-03  Time cost: 00:23/00:10 [16:19/12:33]  Acc_iter 6650        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:59:46,978   INFO  Train:   28/50 ( 56%) [ 219/240 ( 91%)]  Loss: 1.273 (1.33)  LR: 2.514e-03  Time cost: 00:30/00:02 [16:25/12:16]  Acc_iter 6700        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 01:59:49,605   INFO  Train:   28/50 ( 56%) [ 239/240 (100%)]  Loss: 1.510 (1.32)  LR: 2.504e-03  Time cost: 00:33/00:00 [16:28/12:10]  Acc_iter 6720        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  56%|█████▌    | 28/50 [16:29<12:39, 34.54s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 01:59:50,798   INFO  Train:   29/50 ( 58%) [   0/240 (  0%)]  Loss: 1.349 (1.35)  LR: 2.504e-03  Time cost: 00:00/02:28 [16:29/54:33]  Acc_iter 6721        Data time: 0.46(0.46)  Forward time: 0.16(0.16)  Batch time: 0.62(0.62)
+2024-05-19 01:59:54,685   INFO  Train:   29/50 ( 58%) [  29/240 ( 12%)]  Loss: 1.337 (1.31)  LR: 2.490e-03  Time cost: 00:04/00:31 [16:33/13:08]  Acc_iter 6750        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 01:59:55,418   INFO  agq004              Sun May 19 01:59:55 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:00:02,070   INFO  Train:   29/50 ( 58%) [  79/240 ( 33%)]  Loss: 1.410 (1.34)  LR: 2.465e-03  Time cost: 00:11/00:23 [16:41/12:53]  Acc_iter 6800        Data time: 0.00(0.02)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 02:00:08,687   INFO  Train:   29/50 ( 58%) [ 129/240 ( 54%)]  Loss: 1.274 (1.31)  LR: 2.439e-03  Time cost: 00:18/00:15 [16:47/12:13]  Acc_iter 6850        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:00:15,310   INFO  Train:   29/50 ( 58%) [ 179/240 ( 75%)]  Loss: 1.183 (1.31)  LR: 2.414e-03  Time cost: 00:25/00:08 [16:54/11:52]  Acc_iter 6900        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:00:16,112   INFO  agq004              Sun May 19 02:00:16 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:00:22,703   INFO  Train:   29/50 ( 58%) [ 229/240 ( 95%)]  Loss: 1.041 (1.31)  LR: 2.387e-03  Time cost: 00:32/00:01 [17:01/11:54]  Acc_iter 6950        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:00:24,000   INFO  Train:   29/50 ( 58%) [ 239/240 (100%)]  Loss: 1.413 (1.31)  LR: 2.382e-03  Time cost: 00:33/00:00 [17:03/11:50]  Acc_iter 6960        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  58%|█████▊    | 29/50 [17:03<12:04, 34.49s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:00:25,246   INFO  Train:   30/50 ( 60%) [   0/240 (  0%)]  Loss: 1.352 (1.35)  LR: 2.382e-03  Time cost: 00:00/02:44 [17:04/57:32]  Acc_iter 6961        Data time: 0.53(0.53)  Forward time: 0.15(0.15)  Batch time: 0.68(0.68)
+2024-05-19 02:00:30,427   INFO  Train:   30/50 ( 60%) [  39/240 ( 16%)]  Loss: 1.284 (1.27)  LR: 2.361e-03  Time cost: 00:05/00:29 [17:09/12:13]  Acc_iter 7000        Data time: 0.00(0.01)  Forward time: 0.15(0.13)  Batch time: 0.15(0.15)
+2024-05-19 02:00:37,059   INFO  Train:   30/50 ( 60%) [  89/240 ( 37%)]  Loss: 1.141 (1.29)  LR: 2.334e-03  Time cost: 00:12/00:20 [17:16/11:27]  Acc_iter 7050        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:00:37,782   INFO  agq004              Sun May 19 02:00:37 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:00:44,448   INFO  Train:   30/50 ( 60%) [ 139/240 ( 58%)]  Loss: 1.150 (1.28)  LR: 2.307e-03  Time cost: 00:19/00:14 [17:23/11:36]  Acc_iter 7100        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:00:50,999   INFO  Train:   30/50 ( 60%) [ 189/240 ( 79%)]  Loss: 1.104 (1.29)  LR: 2.279e-03  Time cost: 00:26/00:07 [17:30/11:14]  Acc_iter 7150        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:00:57,803   INFO  Train:   30/50 ( 60%) [ 239/240 (100%)]  Loss: 1.244 (1.29)  LR: 2.251e-03  Time cost: 00:33/00:00 [17:36/11:04]  Acc_iter 7200        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+2024-05-19 02:00:58,427   INFO  agq004              Sun May 19 02:00:58 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+
+                                              [Aepochs:  60%|██████    | 30/50 [17:37<11:28, 34.43s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:00:59,523   INFO  Train:   31/50 ( 62%) [   0/240 (  0%)]  Loss: 1.015 (1.02)  LR: 2.250e-03  Time cost: 00:00/02:40 [17:38/53:34]  Acc_iter 7201        Data time: 0.52(0.52)  Forward time: 0.15(0.15)  Batch time: 0.67(0.67)
+2024-05-19 02:01:06,240   INFO  Train:   31/50 ( 62%) [  49/240 ( 20%)]  Loss: 1.445 (1.32)  LR: 2.222e-03  Time cost: 00:07/00:28 [17:45/11:41]  Acc_iter 7250        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:01:12,932   INFO  Train:   31/50 ( 62%) [  99/240 ( 41%)]  Loss: 0.9872 (1.28)  LR: 2.193e-03  Time cost: 00:14/00:19 [17:51/11:01]  Acc_iter 7300        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:01:19,549   INFO  Train:   31/50 ( 62%) [ 149/240 ( 62%)]  Loss: 1.524 (1.27)  LR: 2.164e-03  Time cost: 00:20/00:12 [17:58/10:41]  Acc_iter 7350        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:01:20,416   INFO  agq004              Sun May 19 02:01:20 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:01:27,041   INFO  Train:   31/50 ( 62%) [ 199/240 ( 83%)]  Loss: 1.286 (1.27)  LR: 2.135e-03  Time cost: 00:28/00:05 [18:06/10:48]  Acc_iter 7400        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:01:32,273   INFO  Train:   31/50 ( 62%) [ 239/240 (100%)]  Loss: 1.162 (1.26)  LR: 2.111e-03  Time cost: 00:33/00:00 [18:11/10:35]  Acc_iter 7440        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  62%|██████▏   | 31/50 [18:11<10:51, 34.29s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:01:33,502   INFO  Train:   32/50 ( 64%) [   0/240 (  0%)]  Loss: 1.206 (1.21)  LR: 2.110e-03  Time cost: 00:00/02:45 [18:12/52:29]  Acc_iter 7441        Data time: 0.55(0.55)  Forward time: 0.14(0.14)  Batch time: 0.69(0.69)
+2024-05-19 02:01:34,703   INFO  Train:   32/50 ( 64%) [   9/240 (  4%)]  Loss: 1.284 (1.26)  LR: 2.105e-03  Time cost: 00:01/00:43 [18:13/14:21]  Acc_iter 7450        Data time: 0.00(0.06)  Forward time: 0.13(0.13)  Batch time: 0.13(0.19)
+2024-05-19 02:01:41,286   INFO  Train:   32/50 ( 64%) [  59/240 ( 25%)]  Loss: 1.189 (1.25)  LR: 2.075e-03  Time cost: 00:08/00:25 [18:20/10:35]  Acc_iter 7500        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:01:42,108   INFO  agq004              Sun May 19 02:01:42 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:01:48,691   INFO  Train:   32/50 ( 64%) [ 109/240 ( 45%)]  Loss: 1.333 (1.24)  LR: 2.044e-03  Time cost: 00:15/00:18 [18:27/10:42]  Acc_iter 7550        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:01:55,279   INFO  Train:   32/50 ( 64%) [ 159/240 ( 66%)]  Loss: 1.384 (1.24)  LR: 2.014e-03  Time cost: 00:22/00:11 [18:34/10:18]  Acc_iter 7600        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:02:01,878   INFO  Train:   32/50 ( 64%) [ 209/240 ( 87%)]  Loss: 1.143 (1.24)  LR: 1.983e-03  Time cost: 00:29/00:04 [18:40/10:02]  Acc_iter 7650        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:02:02,629   INFO  agq004              Sun May 19 02:02:02 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:02:06,555   INFO  Train:   32/50 ( 64%) [ 239/240 (100%)]  Loss: 1.266 (1.24)  LR: 1.964e-03  Time cost: 00:33/00:00 [18:45/10:07]  Acc_iter 7680        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  64%|██████▍   | 32/50 [18:45<10:16, 34.25s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:02:07,623   INFO  Train:   33/50 ( 66%) [   0/240 (  0%)]  Loss: 1.423 (1.42)  LR: 1.964e-03  Time cost: 00:00/02:37 [18:46/47:10]  Acc_iter 7681        Data time: 0.50(0.50)  Forward time: 0.15(0.15)  Batch time: 0.65(0.65)
+2024-05-19 02:02:10,124   INFO  Train:   33/50 ( 66%) [  19/240 (  8%)]  Loss: 1.461 (1.27)  LR: 1.952e-03  Time cost: 00:03/00:34 [18:49/11:18]  Acc_iter 7700        Data time: 0.00(0.03)  Forward time: 0.14(0.13)  Batch time: 0.14(0.16)
+2024-05-19 02:02:16,776   INFO  Train:   33/50 ( 66%) [  69/240 ( 29%)]  Loss: 1.286 (1.23)  LR: 1.920e-03  Time cost: 00:09/00:23 [18:55/09:55]  Acc_iter 7750        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:02:23,411   INFO  Train:   33/50 ( 66%) [ 119/240 ( 50%)]  Loss: 1.367 (1.25)  LR: 1.889e-03  Time cost: 00:16/00:16 [19:02/09:35]  Acc_iter 7800        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:02:24,216   INFO  agq004              Sun May 19 02:02:24 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:02:30,801   INFO  Train:   33/50 ( 66%) [ 169/240 ( 70%)]  Loss: 1.292 (1.24)  LR: 1.857e-03  Time cost: 00:23/00:09 [19:09/09:41]  Acc_iter 7850        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:02:37,428   INFO  Train:   33/50 ( 66%) [ 219/240 ( 91%)]  Loss: 1.372 (1.24)  LR: 1.825e-03  Time cost: 00:30/00:02 [19:16/09:27]  Acc_iter 7900        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:02:40,027   INFO  Train:   33/50 ( 66%) [ 239/240 (100%)]  Loss: 1.350 (1.24)  LR: 1.813e-03  Time cost: 00:33/00:00 [19:19/09:22]  Acc_iter 7920        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+
+                                              [Aepochs:  66%|██████▌   | 33/50 [19:19<09:38, 34.04s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:02:41,227   INFO  Train:   34/50 ( 68%) [   0/240 (  0%)]  Loss: 1.215 (1.21)  LR: 1.812e-03  Time cost: 00:00/02:51 [19:20/48:28]  Acc_iter 7921        Data time: 0.57(0.57)  Forward time: 0.14(0.14)  Batch time: 0.71(0.71)
+2024-05-19 02:02:45,063   INFO  Train:   34/50 ( 68%) [  29/240 ( 12%)]  Loss: 1.126 (1.24)  LR: 1.793e-03  Time cost: 00:04/00:31 [19:24/10:14]  Acc_iter 7950        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:02:45,815   INFO  agq004              Sun May 19 02:02:45 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:02:52,439   INFO  Train:   34/50 ( 68%) [  79/240 ( 33%)]  Loss: 1.133 (1.25)  LR: 1.761e-03  Time cost: 00:11/00:23 [19:31/09:56]  Acc_iter 8000        Data time: 0.00(0.02)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 02:02:59,066   INFO  Train:   34/50 ( 68%) [ 129/240 ( 54%)]  Loss: 1.305 (1.26)  LR: 1.729e-03  Time cost: 00:18/00:15 [19:38/09:23]  Acc_iter 8050        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:03:05,765   INFO  Train:   34/50 ( 68%) [ 179/240 ( 75%)]  Loss: 1.262 (1.25)  LR: 1.696e-03  Time cost: 00:25/00:08 [19:44/09:07]  Acc_iter 8100        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:03:06,565   INFO  agq004              Sun May 19 02:03:06 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:03:13,147   INFO  Train:   34/50 ( 68%) [ 229/240 ( 95%)]  Loss: 1.063 (1.25)  LR: 1.664e-03  Time cost: 00:32/00:01 [19:52/09:06]  Acc_iter 8150        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:03:14,433   INFO  Train:   34/50 ( 68%) [ 239/240 (100%)]  Loss: 1.128 (1.25)  LR: 1.657e-03  Time cost: 00:33/00:00 [19:53/09:02]  Acc_iter 8160        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  68%|██████▊   | 34/50 [19:53<09:05, 34.11s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:03:15,500   INFO  Train:   35/50 ( 70%) [   0/240 (  0%)]  Loss: 1.200 (1.20)  LR: 1.657e-03  Time cost: 00:00/02:48 [19:54/44:59]  Acc_iter 8161        Data time: 0.55(0.55)  Forward time: 0.15(0.15)  Batch time: 0.70(0.70)
+2024-05-19 02:03:20,694   INFO  Train:   35/50 ( 70%) [  39/240 ( 16%)]  Loss: 1.121 (1.20)  LR: 1.631e-03  Time cost: 00:05/00:29 [19:59/09:20]  Acc_iter 8200        Data time: 0.00(0.02)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 02:03:27,326   INFO  Train:   35/50 ( 70%) [  89/240 ( 37%)]  Loss: 1.089 (1.21)  LR: 1.599e-03  Time cost: 00:12/00:21 [20:06/08:42]  Acc_iter 8250        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:03:28,056   INFO  agq004              Sun May 19 02:03:28 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:03:34,686   INFO  Train:   35/50 ( 70%) [ 139/240 ( 58%)]  Loss: 1.160 (1.20)  LR: 1.566e-03  Time cost: 00:19/00:14 [20:13/08:45]  Acc_iter 8300        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:03:41,298   INFO  Train:   35/50 ( 70%) [ 189/240 ( 79%)]  Loss: 1.240 (1.21)  LR: 1.533e-03  Time cost: 00:26/00:07 [20:20/08:29]  Acc_iter 8350        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:03:47,845   INFO  Train:   35/50 ( 70%) [ 239/240 (100%)]  Loss: 1.227 (1.21)  LR: 1.501e-03  Time cost: 00:33/00:00 [20:26/08:15]  Acc_iter 8400        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+2024-05-19 02:03:48,465   INFO  agq004              Sun May 19 02:03:48 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+
+                                              [Aepochs:  70%|███████   | 35/50 [20:27<08:31, 34.13s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:03:49,672   INFO  Train:   36/50 ( 72%) [   0/240 (  0%)]  Loss: 1.246 (1.25)  LR: 1.500e-03  Time cost: 00:00/02:51 [20:28/42:59]  Acc_iter 8401        Data time: 0.58(0.58)  Forward time: 0.13(0.13)  Batch time: 0.72(0.72)
+2024-05-19 02:03:56,177   INFO  Train:   36/50 ( 72%) [  49/240 ( 20%)]  Loss: 1.293 (1.21)  LR: 1.468e-03  Time cost: 00:07/00:27 [20:35/08:32]  Acc_iter 8450        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:04:02,801   INFO  Train:   36/50 ( 72%) [  99/240 ( 41%)]  Loss: 1.332 (1.21)  LR: 1.435e-03  Time cost: 00:13/00:19 [20:41/08:04]  Acc_iter 8500        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:04:09,465   INFO  Train:   36/50 ( 72%) [ 149/240 ( 62%)]  Loss: 1.204 (1.21)  LR: 1.403e-03  Time cost: 00:20/00:12 [20:48/07:51]  Acc_iter 8550        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:04:10,219   INFO  agq004              Sun May 19 02:04:10 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:04:16,874   INFO  Train:   36/50 ( 72%) [ 199/240 ( 83%)]  Loss: 1.094 (1.21)  LR: 1.370e-03  Time cost: 00:27/00:05 [20:55/07:54]  Acc_iter 8600        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:04:22,153   INFO  Train:   36/50 ( 72%) [ 239/240 (100%)]  Loss: 1.139 (1.21)  LR: 1.344e-03  Time cost: 00:33/00:00 [21:01/07:44]  Acc_iter 8640        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.14)
+
+                                              [Aepochs:  72%|███████▏  | 36/50 [21:01<07:56, 34.01s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:04:23,369   INFO  Train:   37/50 ( 74%) [   0/240 (  0%)]  Loss: 1.265 (1.26)  LR: 1.343e-03  Time cost: 00:00/02:38 [21:02/36:53]  Acc_iter 8641        Data time: 0.52(0.52)  Forward time: 0.14(0.14)  Batch time: 0.66(0.66)
+2024-05-19 02:04:24,560   INFO  Train:   37/50 ( 74%) [   9/240 (  4%)]  Loss: 1.138 (1.12)  LR: 1.337e-03  Time cost: 00:01/00:42 [21:03/10:19]  Acc_iter 8650        Data time: 0.00(0.05)  Forward time: 0.12(0.13)  Batch time: 0.13(0.18)
+2024-05-19 02:04:31,359   INFO  Train:   37/50 ( 74%) [  59/240 ( 25%)]  Loss: 1.201 (1.16)  LR: 1.305e-03  Time cost: 00:08/00:26 [21:10/07:55]  Acc_iter 8700        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:04:32,121   INFO  agq004              Sun May 19 02:04:32 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:04:38,684   INFO  Train:   37/50 ( 74%) [ 109/240 ( 45%)]  Loss: 1.068 (1.18)  LR: 1.272e-03  Time cost: 00:15/00:19 [21:17/07:52]  Acc_iter 8750        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:04:45,434   INFO  Train:   37/50 ( 74%) [ 159/240 ( 66%)]  Loss: 1.143 (1.18)  LR: 1.240e-03  Time cost: 00:22/00:11 [21:24/07:34]  Acc_iter 8800        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:04:52,930   INFO  Train:   37/50 ( 74%) [ 209/240 ( 87%)]  Loss: 0.9421 (1.19)  LR: 1.208e-03  Time cost: 00:30/00:04 [21:31/07:33]  Acc_iter 8850        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:04:53,660   INFO  agq004              Sun May 19 02:04:53 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:04:57,571   INFO  Train:   37/50 ( 74%) [ 239/240 (100%)]  Loss: 1.093 (1.19)  LR: 1.189e-03  Time cost: 00:34/00:00 [21:36/07:33]  Acc_iter 8880        Data time: 0.00(0.02)  Forward time: 0.12(0.13)  Batch time: 0.12(0.15)
+
+                                              [Aepochs:  74%|███████▍  | 37/50 [21:36<07:27, 34.40s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:04:58,747   INFO  Train:   38/50 ( 76%) [   0/240 (  0%)]  Loss: 1.118 (1.12)  LR: 1.188e-03  Time cost: 00:00/02:53 [21:37/37:36]  Acc_iter 8881        Data time: 0.57(0.57)  Forward time: 0.16(0.16)  Batch time: 0.72(0.72)
+2024-05-19 02:05:01,240   INFO  Train:   38/50 ( 76%) [  19/240 (  8%)]  Loss: 1.129 (1.20)  LR: 1.176e-03  Time cost: 00:03/00:35 [21:40/08:18]  Acc_iter 8900        Data time: 0.00(0.03)  Forward time: 0.13(0.13)  Batch time: 0.13(0.16)
+2024-05-19 02:05:08,113   INFO  Train:   38/50 ( 76%) [  69/240 ( 29%)]  Loss: 1.206 (1.21)  LR: 1.144e-03  Time cost: 00:10/00:24 [21:47/07:19]  Acc_iter 8950        Data time: 0.04(0.01)  Forward time: 0.13(0.13)  Batch time: 0.17(0.14)
+2024-05-19 02:05:15,031   INFO  Train:   38/50 ( 76%) [ 119/240 ( 50%)]  Loss: 1.278 (1.18)  LR: 1.112e-03  Time cost: 00:17/00:17 [21:54/07:05]  Acc_iter 9000        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:05:15,836   INFO  agq004              Sun May 19 02:05:15 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:05:22,418   INFO  Train:   38/50 ( 76%) [ 169/240 ( 70%)]  Loss: 1.142 (1.20)  LR: 1.081e-03  Time cost: 00:24/00:10 [22:01/07:03]  Acc_iter 9050        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:05:29,039   INFO  Train:   38/50 ( 76%) [ 219/240 ( 91%)]  Loss: 1.052 (1.19)  LR: 1.050e-03  Time cost: 00:31/00:02 [22:08/06:48]  Acc_iter 9100        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:05:31,727   INFO  Train:   38/50 ( 76%) [ 239/240 (100%)]  Loss: 0.9161 (1.19)  LR: 1.037e-03  Time cost: 00:33/00:00 [22:10/06:44]  Acc_iter 9120        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.14)
+
+                                              [Aepochs:  76%|███████▌  | 38/50 [22:11<06:53, 34.42s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:05:33,144   INFO  Train:   39/50 ( 78%) [   0/240 (  0%)]  Loss: 1.019 (1.02)  LR: 1.036e-03  Time cost: 00:00/02:39 [22:12/31:56]  Acc_iter 9121        Data time: 0.51(0.51)  Forward time: 0.15(0.15)  Batch time: 0.67(0.67)
+2024-05-19 02:05:36,982   INFO  Train:   39/50 ( 78%) [  29/240 ( 12%)]  Loss: 1.228 (1.18)  LR: 1.018e-03  Time cost: 00:04/00:31 [22:16/07:07]  Acc_iter 9150        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:05:37,780   INFO  agq004              Sun May 19 02:05:37 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:05:44,386   INFO  Train:   39/50 ( 78%) [  79/240 ( 33%)]  Loss: 1.176 (1.19)  LR: 9.876e-04  Time cost: 00:11/00:23 [22:23/06:56]  Acc_iter 9200        Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:05:50,983   INFO  Train:   39/50 ( 78%) [ 129/240 ( 54%)]  Loss: 0.9896 (1.18)  LR: 9.570e-04  Time cost: 00:18/00:15 [22:30/06:31]  Acc_iter 9250        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:05:57,892   INFO  Train:   39/50 ( 78%) [ 179/240 ( 75%)]  Loss: 1.241 (1.17)  LR: 9.266e-04  Time cost: 00:25/00:08 [22:36/06:21]  Acc_iter 9300        Data time: 0.08(0.01)  Forward time: 0.13(0.13)  Batch time: 0.21(0.14)
+2024-05-19 02:05:58,581   INFO  agq004              Sun May 19 02:05:58 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:06:05,084   INFO  Train:   39/50 ( 78%) [ 229/240 ( 95%)]  Loss: 1.076 (1.17)  LR: 8.965e-04  Time cost: 00:32/00:01 [22:44/06:15]  Acc_iter 9350        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:06:06,373   INFO  Train:   39/50 ( 78%) [ 239/240 (100%)]  Loss: 1.055 (1.17)  LR: 8.905e-04  Time cost: 00:33/00:00 [22:45/06:12]  Acc_iter 9360        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  78%|███████▊  | 39/50 [22:45<06:18, 34.37s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:06:07,409   INFO  Train:   40/50 ( 80%) [   0/240 (  0%)]  Loss: 1.313 (1.31)  LR: 8.899e-04  Time cost: 00:00/02:39 [22:46/29:14]  Acc_iter 9361        Data time: 0.52(0.52)  Forward time: 0.15(0.15)  Batch time: 0.66(0.66)
+2024-05-19 02:06:12,573   INFO  Train:   40/50 ( 80%) [  39/240 ( 16%)]  Loss: 1.088 (1.16)  LR: 8.667e-04  Time cost: 00:05/00:29 [22:51/06:19]  Acc_iter 9400        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.15)
+2024-05-19 02:06:19,179   INFO  Train:   40/50 ( 80%) [  89/240 ( 37%)]  Loss: 1.168 (1.17)  LR: 8.372e-04  Time cost: 00:12/00:20 [22:58/05:52]  Acc_iter 9450        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:06:19,922   INFO  agq004              Sun May 19 02:06:19 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:06:26,553   INFO  Train:   40/50 ( 80%) [ 139/240 ( 58%)]  Loss: 1.019 (1.16)  LR: 8.080e-04  Time cost: 00:19/00:14 [23:05/05:53]  Acc_iter 9500        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:06:33,525   INFO  Train:   40/50 ( 80%) [ 189/240 ( 79%)]  Loss: 1.095 (1.15)  LR: 7.791e-04  Time cost: 00:26/00:07 [23:12/05:45]  Acc_iter 9550        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:06:40,477   INFO  Train:   40/50 ( 80%) [ 239/240 (100%)]  Loss: 1.289 (1.15)  LR: 7.506e-04  Time cost: 00:33/00:00 [23:19/05:37]  Acc_iter 9600        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+2024-05-19 02:06:41,115   INFO  agq004              Sun May 19 02:06:41 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+
+                                              [Aepochs:  80%|████████  | 40/50 [23:20<05:45, 34.55s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:06:42,362   INFO  Train:   41/50 ( 82%) [   0/240 (  0%)]  Loss: 1.245 (1.25)  LR: 7.500e-04  Time cost: 00:00/02:41 [23:21/26:58]  Acc_iter 9601        Data time: 0.53(0.53)  Forward time: 0.14(0.14)  Batch time: 0.67(0.67)
+2024-05-19 02:06:48,951   INFO  Train:   41/50 ( 82%) [  49/240 ( 20%)]  Loss: 1.089 (1.14)  LR: 7.224e-04  Time cost: 00:07/00:27 [23:27/05:41]  Acc_iter 9650        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:06:55,922   INFO  Train:   41/50 ( 82%) [  99/240 ( 41%)]  Loss: 1.350 (1.16)  LR: 6.946e-04  Time cost: 00:14/00:20 [23:34/05:27]  Acc_iter 9700        Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:07:02,686   INFO  Train:   41/50 ( 82%) [ 149/240 ( 62%)]  Loss: 1.193 (1.15)  LR: 6.672e-04  Time cost: 00:20/00:12 [23:41/05:15]  Acc_iter 9750        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:07:03,445   INFO  agq004              Sun May 19 02:07:03 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:07:10,075   INFO  Train:   41/50 ( 82%) [ 199/240 ( 83%)]  Loss: 1.140 (1.15)  LR: 6.402e-04  Time cost: 00:28/00:05 [23:49/05:12]  Acc_iter 9800        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:07:15,475   INFO  Train:   41/50 ( 82%) [ 239/240 (100%)]  Loss: 1.023 (1.14)  LR: 6.189e-04  Time cost: 00:33/00:00 [23:54/05:04]  Acc_iter 9840        Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  82%|████████▏ | 41/50 [23:54<05:10, 34.46s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:07:16,682   INFO  Train:   42/50 ( 84%) [   0/240 (  0%)]  Loss: 0.9879 (0.988)  LR: 6.183e-04  Time cost: 00:00/02:57 [23:55/26:38]  Acc_iter 9841        Data time: 0.60(0.60)  Forward time: 0.14(0.14)  Batch time: 0.74(0.74)
+2024-05-19 02:07:17,899   INFO  Train:   42/50 ( 84%) [   9/240 (  4%)]  Loss: 1.144 (1.12)  LR: 6.136e-04  Time cost: 00:01/00:45 [23:56/07:01]  Acc_iter 9850        Data time: 0.00(0.06)  Forward time: 0.13(0.13)  Batch time: 0.13(0.20)
+2024-05-19 02:07:24,646   INFO  Train:   42/50 ( 84%) [  59/240 ( 25%)]  Loss: 1.257 (1.13)  LR: 5.874e-04  Time cost: 00:08/00:26 [24:03/05:04]  Acc_iter 9900        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:07:25,325   INFO  agq004              Sun May 19 02:07:25 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:07:31,953   INFO  Train:   42/50 ( 84%) [ 109/240 ( 45%)]  Loss: 1.249 (1.12)  LR: 5.616e-04  Time cost: 00:16/00:19 [24:10/04:58]  Acc_iter 9950        Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:07:38,575   INFO  Train:   42/50 ( 84%) [ 159/240 ( 66%)]  Loss: 1.287 (1.12)  LR: 5.363e-04  Time cost: 00:22/00:11 [24:17/04:43]  Acc_iter 10000       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:07:45,372   INFO  Train:   42/50 ( 84%) [ 209/240 ( 87%)]  Loss: 1.221 (1.12)  LR: 5.115e-04  Time cost: 00:29/00:04 [24:24/04:33]  Acc_iter 10050       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:07:46,125   INFO  agq004              Sun May 19 02:07:46 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:07:50,059   INFO  Train:   42/50 ( 84%) [ 239/240 (100%)]  Loss: 1.091 (1.12)  LR: 4.968e-04  Time cost: 00:34/00:00 [24:29/04:33]  Acc_iter 10080       Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  84%|████████▍ | 42/50 [24:29<04:36, 34.51s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:07:51,255   INFO  Train:   43/50 ( 86%) [   0/240 (  0%)]  Loss: 0.9507 (0.951)  LR: 4.963e-04  Time cost: 00:00/02:42 [24:30/21:39]  Acc_iter 10081       Data time: 0.53(0.53)  Forward time: 0.14(0.14)  Batch time: 0.68(0.68)
+2024-05-19 02:07:53,770   INFO  Train:   43/50 ( 86%) [  19/240 (  8%)]  Loss: 1.016 (1.10)  LR: 4.871e-04  Time cost: 00:03/00:35 [24:32/05:03]  Acc_iter 10100       Data time: 0.00(0.03)  Forward time: 0.14(0.13)  Batch time: 0.14(0.16)
+2024-05-19 02:08:00,412   INFO  Train:   43/50 ( 86%) [  69/240 ( 29%)]  Loss: 1.074 (1.13)  LR: 4.632e-04  Time cost: 00:09/00:24 [24:39/04:20]  Acc_iter 10150       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:08:07,026   INFO  Train:   43/50 ( 86%) [ 119/240 ( 50%)]  Loss: 1.116 (1.12)  LR: 4.398e-04  Time cost: 00:16/00:16 [24:46/04:06]  Acc_iter 10200       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:08:07,722   INFO  agq004              Sun May 19 02:08:07 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:08:14,298   INFO  Train:   43/50 ( 86%) [ 169/240 ( 70%)]  Loss: 1.021 (1.12)  LR: 4.169e-04  Time cost: 00:23/00:09 [24:53/04:04]  Acc_iter 10250       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:08:20,938   INFO  Train:   43/50 ( 86%) [ 219/240 ( 91%)]  Loss: 1.031 (1.12)  LR: 3.946e-04  Time cost: 00:30/00:02 [24:59/03:54]  Acc_iter 10300       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:08:23,520   INFO  Train:   43/50 ( 86%) [ 239/240 (100%)]  Loss: 1.143 (1.12)  LR: 3.857e-04  Time cost: 00:32/00:00 [25:02/03:50]  Acc_iter 10320       Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  86%|████████▌ | 43/50 [25:02<03:59, 34.14s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:08:24,606   INFO  Train:   44/50 ( 88%) [   0/240 (  0%)]  Loss: 1.161 (1.16)  LR: 3.853e-04  Time cost: 00:00/02:56 [25:03/20:37]  Acc_iter 10321       Data time: 0.60(0.60)  Forward time: 0.14(0.14)  Batch time: 0.74(0.74)
+2024-05-19 02:08:28,446   INFO  Train:   44/50 ( 88%) [  29/240 ( 12%)]  Loss: 1.114 (1.09)  LR: 3.727e-04  Time cost: 00:04/00:32 [25:07/04:11]  Acc_iter 10350       Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:08:29,151   INFO  agq004              Sun May 19 02:08:29 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:08:35,763   INFO  Train:   44/50 ( 88%) [  79/240 ( 33%)]  Loss: 1.156 (1.09)  LR: 3.514e-04  Time cost: 00:11/00:23 [25:14/03:58]  Acc_iter 10400       Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:08:42,393   INFO  Train:   44/50 ( 88%) [ 129/240 ( 54%)]  Loss: 1.106 (1.09)  LR: 3.306e-04  Time cost: 00:18/00:15 [25:21/03:41]  Acc_iter 10450       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:08:48,955   INFO  Train:   44/50 ( 88%) [ 179/240 ( 75%)]  Loss: 1.052 (1.10)  LR: 3.104e-04  Time cost: 00:25/00:08 [25:27/03:29]  Acc_iter 10500       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:08:49,658   INFO  agq004              Sun May 19 02:08:49 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:08:56,222   INFO  Train:   44/50 ( 88%) [ 229/240 ( 95%)]  Loss: 1.179 (1.11)  LR: 2.907e-04  Time cost: 00:32/00:01 [25:35/03:24]  Acc_iter 10550       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:08:57,504   INFO  Train:   44/50 ( 88%) [ 239/240 (100%)]  Loss: 1.122 (1.11)  LR: 2.869e-04  Time cost: 00:33/00:00 [25:36/03:21]  Acc_iter 10560       Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  88%|████████▊ | 44/50 [25:36<03:24, 34.14s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:08:58,672   INFO  Train:   45/50 ( 90%) [   0/240 (  0%)]  Loss: 1.087 (1.09)  LR: 2.865e-04  Time cost: 00:00/02:43 [25:37/16:21]  Acc_iter 10561       Data time: 0.53(0.53)  Forward time: 0.15(0.15)  Batch time: 0.68(0.68)
+2024-05-19 02:09:03,802   INFO  Train:   45/50 ( 90%) [  39/240 ( 16%)]  Loss: 1.182 (1.10)  LR: 2.717e-04  Time cost: 00:05/00:29 [25:42/03:23]  Acc_iter 10600       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:09:10,857   INFO  Train:   45/50 ( 90%) [  89/240 ( 37%)]  Loss: 1.201 (1.10)  LR: 2.532e-04  Time cost: 00:12/00:21 [25:49/03:13]  Acc_iter 10650       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:09:11,578   INFO  agq004              Sun May 19 02:09:11 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:09:18,370   INFO  Train:   45/50 ( 90%) [ 139/240 ( 58%)]  Loss: 1.063 (1.10)  LR: 2.353e-04  Time cost: 00:20/00:14 [25:57/03:09]  Acc_iter 10700       Data time: 0.00(0.02)  Forward time: 0.12(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:09:25,864   INFO  Train:   45/50 ( 90%) [ 189/240 ( 79%)]  Loss: 0.9146 (1.09)  LR: 2.180e-04  Time cost: 00:27/00:07 [26:04/03:03]  Acc_iter 10750       Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:09:32,819   INFO  Train:   45/50 ( 90%) [ 239/240 (100%)]  Loss: 0.9704 (1.10)  LR: 2.013e-04  Time cost: 00:34/00:00 [26:11/02:54]  Acc_iter 10800       Data time: 0.00(0.02)  Forward time: 0.12(0.13)  Batch time: 0.12(0.15)
+2024-05-19 02:09:33,443   INFO  agq004              Sun May 19 02:09:33 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+
+                                              [Aepochs:  90%|█████████ | 45/50 [26:12<02:53, 34.64s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:09:34,533   INFO  Train:   46/50 ( 92%) [   0/240 (  0%)]  Loss: 1.050 (1.05)  LR: 2.010e-04  Time cost: 00:00/02:55 [26:13/14:35]  Acc_iter 10801       Data time: 0.59(0.59)  Forward time: 0.14(0.14)  Batch time: 0.73(0.73)
+2024-05-19 02:09:41,104   INFO  Train:   46/50 ( 92%) [  49/240 ( 20%)]  Loss: 1.042 (1.10)  LR: 1.853e-04  Time cost: 00:07/00:27 [26:20/02:48]  Acc_iter 10850       Data time: 0.00(0.02)  Forward time: 0.12(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:09:47,723   INFO  Train:   46/50 ( 92%) [  99/240 ( 41%)]  Loss: 1.177 (1.11)  LR: 1.698e-04  Time cost: 00:13/00:19 [26:26/02:33]  Acc_iter 10900       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:09:54,327   INFO  Train:   46/50 ( 92%) [ 149/240 ( 62%)]  Loss: 1.069 (1.10)  LR: 1.550e-04  Time cost: 00:20/00:12 [26:33/02:23]  Acc_iter 10950       Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:09:55,039   INFO  agq004              Sun May 19 02:09:55 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:10:01,635   INFO  Train:   46/50 ( 92%) [ 199/240 ( 83%)]  Loss: 1.196 (1.10)  LR: 1.408e-04  Time cost: 00:27/00:05 [26:40/02:19]  Acc_iter 11000       Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:10:06,899   INFO  Train:   46/50 ( 92%) [ 239/240 (100%)]  Loss: 0.9983 (1.09)  LR: 1.300e-04  Time cost: 00:33/00:00 [26:45/02:12]  Acc_iter 11040       Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  92%|█████████▏| 46/50 [26:46<02:17, 34.34s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:10:08,130   INFO  Train:   47/50 ( 94%) [   0/240 (  0%)]  Loss: 1.103 (1.10)  LR: 1.297e-04  Time cost: 00:00/02:44 [26:47/10:59]  Acc_iter 11041       Data time: 0.55(0.55)  Forward time: 0.14(0.14)  Batch time: 0.69(0.69)
+2024-05-19 02:10:09,324   INFO  Train:   47/50 ( 94%) [   9/240 (  4%)]  Loss: 1.228 (1.09)  LR: 1.273e-04  Time cost: 00:01/00:43 [26:48/02:58]  Acc_iter 11050       Data time: 0.00(0.06)  Forward time: 0.13(0.13)  Batch time: 0.13(0.19)
+2024-05-19 02:10:15,914   INFO  Train:   47/50 ( 94%) [  59/240 ( 25%)]  Loss: 1.104 (1.10)  LR: 1.145e-04  Time cost: 00:08/00:25 [26:54/02:07]  Acc_iter 11100       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:10:16,640   INFO  agq004              Sun May 19 02:10:16 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:10:23,236   INFO  Train:   47/50 ( 94%) [ 109/240 ( 45%)]  Loss: 1.047 (1.11)  LR: 1.023e-04  Time cost: 00:15/00:18 [27:02/02:02]  Acc_iter 11150       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:10:29,834   INFO  Train:   47/50 ( 94%) [ 159/240 ( 66%)]  Loss: 1.038 (1.11)  LR: 9.071e-05  Time cost: 00:22/00:11 [27:08/01:52]  Acc_iter 11200       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:10:36,428   INFO  Train:   47/50 ( 94%) [ 209/240 ( 87%)]  Loss: 0.9960 (1.11)  LR: 7.984e-05  Time cost: 00:28/00:04 [27:15/01:43]  Acc_iter 11250       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:10:37,140   INFO  agq004              Sun May 19 02:10:37 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:10:41,073   INFO  Train:   47/50 ( 94%) [ 239/240 (100%)]  Loss: 1.034 (1.10)  LR: 7.365e-05  Time cost: 00:33/00:00 [27:20/01:41]  Acc_iter 11280       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+
+                                              [Aepochs:  94%|█████████▍| 47/50 [27:20<01:42, 34.25s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:10:42,239   INFO  Train:   48/50 ( 96%) [   0/240 (  0%)]  Loss: 0.8822 (0.882)  LR: 7.344e-05  Time cost: 00:00/02:59 [27:21/08:57]  Acc_iter 11281       Data time: 0.61(0.61)  Forward time: 0.13(0.13)  Batch time: 0.75(0.75)
+2024-05-19 02:10:44,765   INFO  Train:   48/50 ( 96%) [  19/240 (  8%)]  Loss: 1.045 (1.06)  LR: 6.965e-05  Time cost: 00:03/00:36 [27:23/01:54]  Acc_iter 11300       Data time: 0.00(0.03)  Forward time: 0.13(0.13)  Batch time: 0.13(0.16)
+2024-05-19 02:10:51,385   INFO  Train:   48/50 ( 96%) [  69/240 ( 29%)]  Loss: 0.9025 (1.10)  LR: 6.014e-05  Time cost: 00:09/00:24 [27:30/01:32]  Acc_iter 11350       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:10:58,061   INFO  Train:   48/50 ( 96%) [ 119/240 ( 50%)]  Loss: 0.9924 (1.10)  LR: 5.131e-05  Time cost: 00:16/00:16 [27:37/01:22]  Acc_iter 11400       Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:10:58,843   INFO  agq004              Sun May 19 02:10:58 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:11:05,421   INFO  Train:   48/50 ( 96%) [ 169/240 ( 70%)]  Loss: 0.9933 (1.09)  LR: 4.317e-05  Time cost: 00:23/00:09 [27:44/01:17]  Acc_iter 11450       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:11:12,105   INFO  Train:   48/50 ( 96%) [ 219/240 ( 91%)]  Loss: 1.031 (1.09)  LR: 3.573e-05  Time cost: 00:30/00:02 [27:51/01:09]  Acc_iter 11500       Data time: 0.03(0.01)  Forward time: 0.13(0.13)  Batch time: 0.16(0.14)
+2024-05-19 02:11:14,755   INFO  Train:   48/50 ( 96%) [ 239/240 (100%)]  Loss: 1.092 (1.09)  LR: 3.294e-05  Time cost: 00:33/00:00 [27:53/01:06]  Acc_iter 11520       Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  96%|█████████▌| 48/50 [27:54<01:08, 34.14s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:11:16,024   INFO  Train:   49/50 ( 98%) [   0/240 (  0%)]  Loss: 0.9332 (0.933)  LR: 3.281e-05  Time cost: 00:00/02:39 [27:55/05:18]  Acc_iter 11521       Data time: 0.52(0.52)  Forward time: 0.15(0.15)  Batch time: 0.66(0.66)
+2024-05-19 02:11:19,866   INFO  Train:   49/50 ( 98%) [  29/240 ( 12%)]  Loss: 1.128 (1.09)  LR: 2.898e-05  Time cost: 00:04/00:31 [27:58/01:07]  Acc_iter 11550       Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:11:20,608   INFO  agq004              Sun May 19 02:11:20 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:11:27,229   INFO  Train:   49/50 ( 98%) [  79/240 ( 33%)]  Loss: 1.073 (1.12)  LR: 2.293e-05  Time cost: 00:11/00:23 [28:06/00:59]  Acc_iter 11600       Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:11:33,835   INFO  Train:   49/50 ( 98%) [ 129/240 ( 54%)]  Loss: 1.171 (1.11)  LR: 1.759e-05  Time cost: 00:18/00:15 [28:12/00:49]  Acc_iter 11650       Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:11:40,452   INFO  Train:   49/50 ( 98%) [ 179/240 ( 75%)]  Loss: 1.128 (1.10)  LR: 1.295e-05  Time cost: 00:25/00:08 [28:19/00:41]  Acc_iter 11700       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:11:41,183   INFO  agq004              Sun May 19 02:11:41 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:11:47,760   INFO  Train:   49/50 ( 98%) [ 229/240 ( 95%)]  Loss: 1.144 (1.10)  LR: 9.017e-06  Time cost: 00:32/00:01 [28:26/00:35]  Acc_iter 11750       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:11:49,100   INFO  Train:   49/50 ( 98%) [ 239/240 (100%)]  Loss: 0.9834 (1.09)  LR: 8.316e-06  Time cost: 00:33/00:00 [28:28/00:33]  Acc_iter 11760       Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+
+                                              [Aepochs:  98%|█████████▊| 49/50 [28:28<00:34, 34.15s/it]
+train:   0%|          | 0/240 [00:00<?, ?it/s][A2024-05-19 02:11:50,248   INFO  Train:   50/50 (100%) [   0/240 (  0%)]  Loss: 1.027 (1.03)  LR: 8.247e-06  Time cost: 00:00/02:46 [28:29/02:46]  Acc_iter 11761       Data time: 0.55(0.55)  Forward time: 0.14(0.14)  Batch time: 0.69(0.69)
+2024-05-19 02:11:55,390   INFO  Train:   50/50 (100%) [  39/240 ( 16%)]  Loss: 1.170 (1.12)  LR: 5.795e-06  Time cost: 00:05/00:29 [28:34/00:29]  Acc_iter 11800       Data time: 0.00(0.02)  Forward time: 0.13(0.13)  Batch time: 0.13(0.15)
+2024-05-19 02:12:01,998   INFO  Train:   50/50 (100%) [  89/240 ( 37%)]  Loss: 1.017 (1.11)  LR: 3.285e-06  Time cost: 00:12/00:20 [28:41/00:20]  Acc_iter 11850       Data time: 0.00(0.01)  Forward time: 0.13(0.13)  Batch time: 0.13(0.14)
+2024-05-19 02:12:02,741   INFO  agq004              Sun May 19 02:12:02 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+2024-05-19 02:12:09,330   INFO  Train:   50/50 (100%) [ 139/240 ( 58%)]  Loss: 1.113 (1.11)  LR: 1.486e-06  Time cost: 00:19/00:14 [28:48/00:14]  Acc_iter 11900       Data time: 0.00(0.01)  Forward time: 0.14(0.13)  Batch time: 0.14(0.14)
+2024-05-19 02:12:15,985   INFO  Train:   50/50 (100%) [ 189/240 ( 79%)]  Loss: 1.064 (1.10)  LR: 4.014e-07  Time cost: 00:26/00:07 [28:55/00:07]  Acc_iter 11950       Data time: 0.00(0.01)  Forward time: 0.15(0.13)  Batch time: 0.15(0.14)
+2024-05-19 02:12:22,593   INFO  Train:   50/50 (100%) [ 239/240 (100%)]  Loss: 1.035 (1.09)  LR: 3.014e-08  Time cost: 00:33/00:00 [29:01/00:00]  Acc_iter 12000       Data time: 0.00(0.01)  Forward time: 0.12(0.13)  Batch time: 0.12(0.14)
+2024-05-19 02:12:23,227   INFO  agq004              Sun May 19 02:12:23 2024  530.30.02
+[0] Quadro RTX 5000 | 37°C,   0 % |  1493 / 16384 MB | u11423(1490M)
+
+train:   0%|          | 0/240 [00:33<?, ?it/s]
+epochs: 100%|██████████| 50/50 [29:02<00:00, 34.16s/it]epochs: 100%|██████████| 50/50 [29:02<00:00, 34.85s/it]
+2024-05-19 02:12:23,573   INFO  **********************End training user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models/pps(default)**********************
+
+
+
+2024-05-19 02:12:23,573   INFO  **********************Start evaluation user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models/pps(default)**********************
+2024-05-19 02:12:23,602   INFO  Loading Custom dataset.
+2024-05-19 02:12:23,669   INFO  Total samples for CUSTOM dataset: 480
+2024-05-19 02:12:23,723   INFO  ==> Loading parameters from checkpoint /home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/output/user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models/pps/default/ckpt/checkpoint_epoch_50.pth to GPU
+2024-05-19 02:12:23,929   INFO  ==> Checkpoint trained from version: pcdet+0.6.0+37a88e1+pya5ea803
+2024-05-19 02:12:23,933   INFO  ==> Done (loaded 127/127)
+2024-05-19 02:12:23,936   INFO  *************** EPOCH 50 EVALUATION *****************
+eval:   0%|          | 0/30 [00:00<?, ?it/s]/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/ops/iou3d_nms/iou3d_nms_utils.py:66: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  overlaps_bev = torch.cuda.FloatTensor(torch.Size((boxes_a.shape[0], boxes_b.shape[0]))).zero_()  # (N, M)
+eval:   0%|          | 0/30 [00:00<?, ?it/s, recall_0.3=(0, 58) / 228]eval:   3%|▎         | 1/30 [00:00<00:25,  1.13it/s, recall_0.3=(0, 58) / 228]eval:   3%|▎         | 1/30 [00:00<00:25,  1.13it/s, recall_0.3=(0, 112) / 483]eval:   7%|▋         | 2/30 [00:00<00:24,  1.13it/s, recall_0.3=(0, 123) / 745]eval:  10%|█         | 3/30 [00:01<00:23,  1.13it/s, recall_0.3=(0, 138) / 927]eval:  13%|█▎        | 4/30 [00:01<00:05,  4.98it/s, recall_0.3=(0, 138) / 927]eval:  13%|█▎        | 4/30 [00:01<00:05,  4.98it/s, recall_0.3=(0, 149) / 1066]eval:  17%|█▋        | 5/30 [00:01<00:05,  4.98it/s, recall_0.3=(0, 170) / 1209]eval:  20%|██        | 6/30 [00:01<00:03,  7.03it/s, recall_0.3=(0, 170) / 1209]eval:  20%|██        | 6/30 [00:01<00:03,  7.03it/s, recall_0.3=(0, 195) / 1405]eval:  23%|██▎       | 7/30 [00:01<00:03,  7.03it/s, recall_0.3=(0, 227) / 1564]eval:  27%|██▋       | 8/30 [00:01<00:03,  7.03it/s, recall_0.3=(0, 246) / 1747]eval:  30%|███       | 9/30 [00:01<00:02,  8.77it/s, recall_0.3=(0, 246) / 1747]eval:  30%|███       | 9/30 [00:01<00:02,  8.77it/s, recall_0.3=(0, 254) / 1876]eval:  33%|███▎      | 10/30 [00:01<00:02,  8.77it/s, recall_0.3=(0, 262) / 1990]eval:  37%|███▋      | 11/30 [00:01<00:02,  8.77it/s, recall_0.3=(0, 281) / 2057]eval:  40%|████      | 12/30 [00:01<00:01, 12.02it/s, recall_0.3=(0, 281) / 2057]eval:  40%|████      | 12/30 [00:01<00:01, 12.02it/s, recall_0.3=(0, 297) / 2138]eval:  43%|████▎     | 13/30 [00:01<00:01, 12.02it/s, recall_0.3=(0, 308) / 2205]eval:  47%|████▋     | 14/30 [00:01<00:01, 13.40it/s, recall_0.3=(0, 308) / 2205]eval:  47%|████▋     | 14/30 [00:01<00:01, 13.40it/s, recall_0.3=(0, 310) / 2241]eval:  50%|█████     | 15/30 [00:01<00:01, 13.40it/s, recall_0.3=(0, 368) / 2469]eval:  53%|█████▎    | 16/30 [00:01<00:01, 13.40it/s, recall_0.3=(0, 422) / 2724]eval:  57%|█████▋    | 17/30 [00:01<00:00, 15.62it/s, recall_0.3=(0, 422) / 2724]eval:  57%|█████▋    | 17/30 [00:01<00:00, 15.62it/s, recall_0.3=(0, 433) / 2986]eval:  60%|██████    | 18/30 [00:01<00:00, 15.62it/s, recall_0.3=(0, 448) / 3168]eval:  63%|██████▎   | 19/30 [00:01<00:00, 15.62it/s, recall_0.3=(0, 459) / 3307]eval:  67%|██████▋   | 20/30 [00:01<00:00, 18.01it/s, recall_0.3=(0, 459) / 3307]eval:  67%|██████▋   | 20/30 [00:01<00:00, 18.01it/s, recall_0.3=(0, 480) / 3450]eval:  70%|███████   | 21/30 [00:01<00:00, 18.01it/s, recall_0.3=(0, 505) / 3646]eval:  73%|███████▎  | 22/30 [00:01<00:00, 18.01it/s, recall_0.3=(0, 537) / 3805]eval:  77%|███████▋  | 23/30 [00:01<00:00, 20.01it/s, recall_0.3=(0, 537) / 3805]eval:  77%|███████▋  | 23/30 [00:02<00:00, 20.01it/s, recall_0.3=(0, 556) / 3988]eval:  80%|████████  | 24/30 [00:02<00:00, 20.01it/s, recall_0.3=(0, 564) / 4117]eval:  83%|████████▎ | 25/30 [00:02<00:00, 20.01it/s, recall_0.3=(0, 572) / 4231]eval:  87%|████████▋ | 26/30 [00:02<00:00, 22.18it/s, recall_0.3=(0, 572) / 4231]eval:  87%|████████▋ | 26/30 [00:02<00:00, 22.18it/s, recall_0.3=(0, 591) / 4298]eval:  90%|█████████ | 27/30 [00:02<00:00, 22.18it/s, recall_0.3=(0, 607) / 4379]eval:  93%|█████████▎| 28/30 [00:02<00:00, 22.18it/s, recall_0.3=(0, 618) / 4446]eval:  97%|█████████▋| 29/30 [00:02<00:00, 22.18it/s, recall_0.3=(0, 620) / 4482]eval: 100%|██████████| 30/30 [00:02<00:00, 24.70it/s, recall_0.3=(0, 620) / 4482]eval: 100%|██████████| 30/30 [00:02<00:00, 13.18it/s, recall_0.3=(0, 620) / 4482]
+2024-05-19 02:12:26,214   INFO  *************** Performance of EPOCH 50 *****************
+2024-05-19 02:12:26,214   INFO  Generate label finished(sec_per_example: 0.0047 second).
+2024-05-19 02:12:26,214   INFO  recall_roi_0.3: 0.000000
+2024-05-19 02:12:26,214   INFO  recall_rcnn_0.3: 0.138331
+2024-05-19 02:12:26,214   INFO  recall_roi_0.5: 0.000000
+2024-05-19 02:12:26,214   INFO  recall_rcnn_0.5: 0.046408
+2024-05-19 02:12:26,214   INFO  recall_roi_0.7: 0.000000
+2024-05-19 02:12:26,214   INFO  recall_rcnn_0.7: 0.009371
+2024-05-19 02:12:26,214   INFO  Average predicted number of objects(480 samples): 23.279
+/home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/tools/../pcdet/datasets/kitti/kitti_object_eval_python/eval.py:10: NumbaDeprecationWarning: The 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
+  def get_thresholds(scores: np.ndarray, num_gt, num_sample_pts=41):
+/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/numba/cuda/dispatcher.py:536: NumbaPerformanceWarning: Grid size 4 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/numba/cuda/dispatcher.py:536: NumbaPerformanceWarning: Grid size 2 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/numba/core/typed_passes.py:334: NumbaPerformanceWarning: 
+The keyword argument 'parallel=True' was specified but no transformation for parallel execution was possible.
+
+To find out why, try turning on parallel diagnostics, see https://numba.readthedocs.io/en/stable/user/parallel.html#diagnostics for help.
+
+File "../pcdet/datasets/kitti/kitti_object_eval_python/eval.py", line 122:
+@numba.jit(nopython=True, parallel=True)
+def d3_box_overlap_kernel(boxes, qboxes, rinc, criterion=-1):
+^
+
+  warnings.warn(errors.NumbaPerformanceWarning(msg,
+/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/numba/cuda/dispatcher.py:536: NumbaPerformanceWarning: Grid size 4 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/user/sun.qumeng/u11423/.conda/envs/openpcd/lib/python3.8/site-packages/numba/cuda/dispatcher.py:536: NumbaPerformanceWarning: Grid size 2 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+2024-05-19 02:12:35,623   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:90.0912, 90.0912, 90.0912
+bev  AP:0.0832, 0.0832, 0.0832
+3d   AP:0.0751, 0.0751, 0.0751
+aos  AP:68.35, 68.35, 68.35
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:91.8038, 91.8038, 91.8038
+bev  AP:0.0229, 0.0229, 0.0229
+3d   AP:0.0128, 0.0128, 0.0128
+aos  AP:68.16, 68.16, 68.16
+Car AP@0.70, 0.50, 0.50:
+bbox AP:90.0912, 90.0912, 90.0912
+bev  AP:3.3110, 3.3110, 3.3110
+3d   AP:3.0303, 3.0303, 3.0303
+aos  AP:68.35, 68.35, 68.35
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:91.8038, 91.8038, 91.8038
+bev  AP:0.6133, 0.6133, 0.6133
+3d   AP:0.2143, 0.2143, 0.2143
+aos  AP:68.16, 68.16, 68.16
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:26.6859, 26.6859, 26.6859
+bev  AP:0.0000, 0.0000, 0.0000
+3d   AP:0.0000, 0.0000, 0.0000
+aos  AP:21.80, 21.80, 21.80
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:25.9800, 25.9800, 25.9800
+bev  AP:0.0000, 0.0000, 0.0000
+3d   AP:0.0000, 0.0000, 0.0000
+aos  AP:21.21, 21.21, 21.21
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:26.6859, 26.6859, 26.6859
+bev  AP:0.0000, 0.0000, 0.0000
+3d   AP:0.0000, 0.0000, 0.0000
+aos  AP:21.80, 21.80, 21.80
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:25.9800, 25.9800, 25.9800
+bev  AP:0.0000, 0.0000, 0.0000
+3d   AP:0.0000, 0.0000, 0.0000
+aos  AP:21.21, 21.21, 21.21
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:11.4003, 11.4003, 11.4003
+bev  AP:0.0000, 0.0000, 0.0000
+3d   AP:0.0000, 0.0000, 0.0000
+aos  AP:11.16, 11.16, 11.16
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:6.1166, 6.1166, 6.1166
+bev  AP:0.0000, 0.0000, 0.0000
+3d   AP:0.0000, 0.0000, 0.0000
+aos  AP:5.89, 5.89, 5.89
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:11.4003, 11.4003, 11.4003
+bev  AP:0.0000, 0.0000, 0.0000
+3d   AP:0.0000, 0.0000, 0.0000
+aos  AP:11.16, 11.16, 11.16
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:6.1166, 6.1166, 6.1166
+bev  AP:0.0000, 0.0000, 0.0000
+3d   AP:0.0000, 0.0000, 0.0000
+aos  AP:5.89, 5.89, 5.89
+
+2024-05-19 02:12:35,624   INFO  Result is saved to /home/uni08/hpc/sun.qumeng/u11423/OpenPCDet/output/user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models/pps/default/eval/eval_with_train/epoch_50/val
+2024-05-19 02:12:35,624   INFO  ****************Evaluation done.*****************
+2024-05-19 02:12:35,631   INFO  Epoch 50 has been evaluated
+2024-05-19 02:13:05,663   INFO  **********************End evaluation user/sun.qumeng/u11423/OpenPCDet/tools/cfgs/custom_models/pps(default)**********************

@@ -20,6 +20,7 @@ DATA_CONFIG:
             'train': 16000,
             'test': 40000
           }
+          
     DATA_AUGMENTOR:
         DISABLE_AUG_LIST: ['placeholder']
         AUG_CONFIG_LIST:
