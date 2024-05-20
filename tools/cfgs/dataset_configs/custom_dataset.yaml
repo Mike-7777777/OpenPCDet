@@ -2,7 +2,7 @@ DATASET: 'CustomDataset'
 DATA_PATH: '../data/custom'
 
 # Set the proper POINT_CLOUD_RANGE, getting from `gbin.py`
-POINT_CLOUD_RANGE: [-173, -180, -10, 167, 142, 0]
+POINT_CLOUD_RANGE: [0.0, -180.0, -10.0, 160.0, 140.0, 0.0]
 
 MAP_CLASS_TO_KITTI: {
     'CAR': 'Car',
@@ -70,9 +70,9 @@ DATA_PROCESSOR:
       
     # tum is bigger than kitti, so we use larger voxel size and larger max_number
     - NAME: transform_points_to_voxels
-      VOXEL_SIZE: [0.224, 0.224, 0.25]
+      VOXEL_SIZE: [0.15, 0.15, 0.25]
       MAX_POINTS_PER_VOXEL: 10
       MAX_NUMBER_OF_VOXELS: {
-        'train': 1200000,
-        'test': 1200000
+        'train': 230000,
+        'test': 230000
       }

@@ -3,8 +3,7 @@ CLASS_NAMES: ['CAR', 'PEDESTRIAN', 'BICYCLE']
 DATA_CONFIG: 
     _BASE_CONFIG_: cfgs/dataset_configs/custom_dataset.yaml
 
-    # original dataset's RANGE: [340, 322, 10]
-    POINT_CLOUD_RANGE: [-171.96, -177.72, -10.0, 165.96, 139.72, 0.0]
+    POINT_CLOUD_RANGE: [0.0, -180.0, -10.0, 153.6, 137.44, 0.0]
 
     DATA_PROCESSOR:
         - NAME: mask_points_and_boxes_outside_range
@@ -20,8 +19,8 @@ DATA_CONFIG:
           VOXEL_SIZE: [0.64, 0.64, 10]
           MAX_POINTS_PER_VOXEL: 32
           MAX_NUMBER_OF_VOXELS: {
-            'train': 1200000,
-            'test': 1200000
+            'train': 230000,
+            'test': 230000
           }
           
     DATA_AUGMENTOR:
